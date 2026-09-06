@@ -9,6 +9,9 @@
   <ItemGroup>
     <Content Remove="tools\**" />
     <None Remove="tools\**" />
+    <Compile Remove="LandsatProgram.Tests\**" />
+    <Content Remove="LandsatProgram.Tests\**" />
+    <None Remove="LandsatProgram.Tests\**" />
   </ItemGroup>
   <Target Name="StopLockedDebugHostBeforeBuild"
           Condition="'$(Configuration)' == 'Debug' and '$(OS)' == 'Windows_NT' and '$(DesignTimeBuild)' != 'true'">
