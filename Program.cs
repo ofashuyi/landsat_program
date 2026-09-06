@@ -14,10 +14,14 @@ builder.Services.AddSingleton<IApplicationCatalogService, JsonApplicationCatalog
 builder.Services.AddSingleton<IBandCatalogService, JsonBandCatalogService>();
 builder.Services.AddSingleton<IStudioCatalogService, JsonStudioCatalogService>();
 builder.Services.AddSingleton<ILearningCatalogService, JsonLearningCatalogService>();
+var landsatStacBaseUrl = builder.Configuration["LandsatStac:BaseUrl"]
+    ?? throw new InvalidOperationException("Configuration value 'LandsatStac:BaseUrl' is required.");
+var landsatStacTimeoutSeconds = builder.Configuration.GetValue<double?>("LandsatStac:TimeoutSeconds") ?? 20;
+
 builder.Services.AddHttpClient("landsat-stac", client =>
 {
-    client.BaseAddress = new Uri("https://earth-search.aws.element84.com/");
-    client.Timeout = TimeSpan.FromSeconds(20);
+    client.BaseAddress = new Uri(landsatStacBaseUrl);
+    client.Timeout = TimeSpan.FromSeconds(landsatStacTimeoutSeconds);
 });
 
 var app = builder.Build();
