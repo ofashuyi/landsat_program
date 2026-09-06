@@ -1,0 +1,59 @@
+@{
+    ViewData["Title"] = "Landsat Applications | Briefing";
+    ViewData["Description"] = "See where Landsat earns its place in real decision-making.";
+    ViewData["OgTitle"] = "Landsat Applications";
+    ViewData["OgDescription"] = "Water, forests, agriculture, cities, hazards, and complementary missions.";
+    ViewData["OgImage"] = "/img/landsat9.jpg";
+    ViewData["BodyClass"] = "page-briefing";
+    ViewData["BrandHref"] = "/briefing";
+    ViewData["BrandSubtitle"] = "Briefing chapters";
+    ViewData["NavLinks"] = new[]
+    {
+        new NavigationLink("Chapters", "/briefing"),
+        new NavigationLink("Fleet", "/briefing/missions"),
+        new NavigationLink("Applications", "/briefing/applications"),
+        new NavigationLink("Products", "/briefing/products"),
+        new NavigationLink("Future", "/briefing/future"),
+        new NavigationLink("Studio", "/studio")
+    };
+}
+
+<main class="shell container-xxl px-3 px-lg-4">
+    <section id="applications" class="page-intro">
+        <div class="section-heading row g-3 align-items-end">
+            <div class="col-lg-7">
+                <div class="eyebrow">Operational Value</div>
+                <h1>See where Landsat earns its place in real decision-making</h1>
+            </div>
+            <div class="col-lg-5">
+                <p class="body-copy">
+                    Landsat matters because it is calibrated, stable, open, and long-running. That makes it useful for water
+                    accounting, biomass and disturbance monitoring, city heat, agriculture, hazards, and data fusion.
+                </p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-xl-7">
+                <div class="panel h-100">
+                    <div class="impact-filters" id="impact-filters"></div>
+                    <div class="impact-hero" id="impact-hero" aria-live="polite"></div>
+                </div>
+            </div>
+            <div class="col-xl-5">
+                <div class="panel h-100">
+                    <div class="eyebrow">Complementary Missions</div>
+                    <h3 class="mb-2">Landsat is strongest when you understand what it does not try to be</h3>
+                    <p class="body-copy mb-3">
+                        Landsat is often the reference record. Other missions add higher revisit, water elevation, forest
+                        structure, or thermal detail that Landsat alone cannot provide.
+                    </p>
+                    <div class="complement-grid" id="complement-grid" aria-live="polite"></div>
+                </div>
+            </div>
+        </div>
+        <div class="page-nav">
+            <a class="button" href="/briefing/missions">Previous: mission fleet</a>
+            <a class="button button-primary" href="/briefing/products">Next: products</a>
+        </div>
+    </section>
+</main>

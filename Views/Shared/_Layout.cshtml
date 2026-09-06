@@ -1,0 +1,55 @@
+@using LandsatProgram.Models
+@{
+    var title = ViewData["Title"] as string ?? "Landsat Program Explorer";
+    var description = ViewData["Description"] as string ?? "Explore the Landsat program through briefing content, labs, and a remote-sensing studio.";
+    var ogTitle = ViewData["OgTitle"] as string ?? title;
+    var ogDescription = ViewData["OgDescription"] as string ?? description;
+    var ogImage = ViewData["OgImage"] as string ?? "/img/landsat9.jpg";
+    var ogUrl = ViewData["OgUrl"] as string ?? "https://landsat.gsfc.nasa.gov/";
+    var bodyClass = ViewData["BodyClass"] as string ?? "";
+    var navLinks = ViewData["NavLinks"] as IReadOnlyList<NavigationLink> ?? Array.Empty<NavigationLink>();
+    var navigation = new TopNavigationViewModel(
+        ViewData["BrandHref"] as string ?? "/briefing",
+        ViewData["BrandSubtitle"] as string ?? "Briefing first, labs second",
+        navLinks);
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@title</title>
+    <meta name="description" content="@description">
+    <meta property="og:title" content="@ogTitle">
+    <meta property="og:description" content="@ogDescription">
+    <meta property="og:image" content="@ogImage">
+    <meta property="og:url" content="@ogUrl">
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="/vendor/bootstrap.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="/vendor/ol.css" asp-append-version="true">
+    <environment names="Development">
+        <link rel="stylesheet" href="/css/app.css" asp-append-version="true">
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="/css/app.min.css" asp-append-version="true">
+    </environment>
+</head>
+<body class="@bodyClass">
+    <partial name="_TopNavigation" model="navigation" />
+    @RenderBody()
+    <script defer src="/vendor/bootstrap.bundle.min.js" asp-append-version="true"></script>
+    <script defer src="/vendor/geotiff.js" asp-append-version="true"></script>
+    <script defer src="/vendor/ol.js" asp-append-version="true"></script>
+    <environment names="Development">
+        <script defer src="/js/app.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script defer src="/js/app.min.js" asp-append-version="true"></script>
+    </environment>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Redirecting to Landsat Program Explorer</title>
+    <meta http-equiv="refresh" content="0; url=/briefing">
+    <link rel="canonical" href="/briefing">
+</head>
+<body>
+    <p>Redirecting to <a href="/briefing">the Landsat Program briefing</a>.</p>
+    <script>
+        const routes = {
+            "#overview": "/briefing/overview",
+            "#foundations": "/briefing/foundations",
+            "#missions": "/briefing/missions",
+            "#applications": "/briefing/applications",
+            "#products": "/briefing/products",
+            "#future": "/briefing/future",
+            "#resources": "/briefing/resources"
+        };
+        window.location.replace(routes[window.location.hash.toLowerCase()] || "/briefing");
+    </script>
+</body>
+</html>

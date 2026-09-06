@@ -1,0 +1,68 @@
+@{
+    ViewData["Title"] = "Landsat Program Overview | Briefing";
+    ViewData["Description"] = "A short overview of why the Landsat program matters.";
+    ViewData["OgTitle"] = "Landsat Program Overview";
+    ViewData["OgDescription"] = "Start with the few facts that explain why Landsat matters.";
+    ViewData["OgImage"] = "/img/landsat9.jpg";
+    ViewData["BodyClass"] = "page-briefing";
+    ViewData["BrandHref"] = "/briefing";
+    ViewData["BrandSubtitle"] = "Briefing chapters";
+    ViewData["NavLinks"] = new[]
+    {
+        new NavigationLink("Chapters", "/briefing"),
+        new NavigationLink("Overview", "/briefing/overview"),
+        new NavigationLink("Foundations", "/briefing/foundations"),
+        new NavigationLink("Fleet", "/briefing/missions"),
+        new NavigationLink("Applications", "/briefing/applications"),
+        new NavigationLink("Products", "/briefing/products"),
+        new NavigationLink("Studio", "/studio")
+    };
+}
+
+<main class="shell container-xxl px-3 px-lg-4">
+    <section id="overview" class="page-intro">
+        <div class="section-heading row g-3 align-items-end">
+            <div class="col-lg-7">
+                <div class="eyebrow">Program Snapshot</div>
+                <h1>Start with the few facts that explain why Landsat matters</h1>
+            </div>
+            <div class="col-lg-5">
+                <p class="body-copy">
+                    Landsat is the NASA-USGS program that has observed Earth's land surface continuously across more than
+                    five decades, creating a consistent record for agriculture, water, forests, cities, hazards, climate
+                    resilience, and environmental policy.
+                </p>
+            </div>
+        </div>
+        <div class="row g-4 metrics-grid">
+            <div class="col-sm-6 col-xl-3">
+                <article class="metric fade-up h-100">
+                    <strong>50+ years</strong>
+                    <span>Continuous land observations from 1972 to 2026.</span>
+                </article>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+                <article class="metric fade-up h-100">
+                    <strong>8</strong>
+                    <span>Successful Landsat satellites have reached orbit.</span>
+                </article>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+                <article class="metric fade-up h-100">
+                    <strong>$25.6B</strong>
+                    <span>Estimated economic value of Landsat imagery in 2023, according to USGS.</span>
+                </article>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+                <article class="metric fade-up h-100">
+                    <strong>&lt; 1.4 days</strong>
+                    <span>Global median revisit frequency for HLS Version 2.0 in 2025 with five satellites.</span>
+                </article>
+            </div>
+        </div>
+        <div class="page-nav">
+            <a class="button" href="/briefing">All chapters</a>
+            <a class="button button-primary" href="/briefing/foundations">Next: foundations</a>
+        </div>
+    </section>
+</main>

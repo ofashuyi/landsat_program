@@ -1,0 +1,161 @@
+@{
+    ViewData["Title"] = "Remote Sensing Studio | Landsat";
+    ViewData["Description"] = "A focused OpenLayers studio for Landsat hotspots, STAC scene lookup, and pixel interpretation.";
+    ViewData["OgTitle"] = "Remote Sensing Studio";
+    ViewData["OgDescription"] = "Choose a place, select a year, inspect scenes, and interpret pixels.";
+    ViewData["OgImage"] = "/img/landsat9.jpg";
+    ViewData["BodyClass"] = "page-labs";
+    ViewData["BrandHref"] = "/studio";
+    ViewData["BrandSubtitle"] = "Interactive tools";
+    ViewData["NavLinks"] = new[]
+    {
+        new NavigationLink("Studio Hub", "/studio"),
+        new NavigationLink("Orbit", "/studio/orbit-lab"),
+        new NavigationLink("Resolution", "/studio/resolution-lab"),
+        new NavigationLink("Bands", "/studio/band-lab"),
+        new NavigationLink("Map Studio", "/studio/remote-sensing-studio"),
+        new NavigationLink("Products", "/briefing/products")
+    };
+}
+
+<main class="shell container-xxl px-3 px-lg-4">
+    <section id="studio" class="page-intro">
+        <div class="section-heading row g-3 align-items-end">
+            <div class="col-lg-7">
+                <div class="eyebrow">Remote Sensing Studio</div>
+                <h1>Choose a place, select a year, inspect scenes, and interpret pixels</h1>
+            </div>
+            <div class="col-lg-5">
+                <p class="body-copy">
+                    Use the controls as a short workflow: set the place and context, review actual STAC scene results,
+                    then connect the map view to spectral, index, and pixel-level interpretation.
+                </p>
+            </div>
+        </div>
+        <div class="studio-workflow" aria-label="Remote sensing studio workflow">
+            <div class="workflow-step">
+                <span>1</span>
+                <strong>Choose place</strong>
+                <p>Pick a hotspot and zoom to its study area.</p>
+            </div>
+            <div class="workflow-step">
+                <span>2</span>
+                <strong>Set year/view</strong>
+                <p>Choose timeline, basemap, satellite, and interpretation mode.</p>
+            </div>
+            <div class="workflow-step">
+                <span>3</span>
+                <strong>Inspect scenes</strong>
+                <p>Review real Landsat STAC returns for the selected place.</p>
+            </div>
+            <div class="workflow-step">
+                <span>4</span>
+                <strong>Interpret pixels</strong>
+                <p>Use spectral, index, hover, and pixel cues together.</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-xl-4">
+                <div class="panel h-100 studio-sidebar">
+                    <div class="studio-control-group">
+                        <span class="studio-label">Basemap</span>
+                        <div class="studio-segmented" id="studio-basemap"></div>
+                    </div>
+                    <div class="studio-control-group">
+                        <span class="studio-label">Satellite context</span>
+                        <div class="studio-segmented" id="studio-satellite"></div>
+                    </div>
+                    <div class="studio-control-group">
+                        <span class="studio-label">Interpretation mode</span>
+                        <div class="studio-segmented" id="studio-viewmode"></div>
+                    </div>
+                    <div class="studio-control-group">
+                        <span class="studio-label">Historical hotspot</span>
+                        <div class="studio-hotspots" id="studio-hotspots"></div>
+                    </div>
+                    <div class="studio-control-group">
+                        <div class="d-flex justify-content-between align-items-center gap-3">
+                            <span class="studio-label mb-0">Change timeline</span>
+                            <strong id="studio-year-label">1984</strong>
+                        </div>
+                        <input class="form-range studio-slider" id="studio-year-slider" type="range" min="0" max="0" step="1" value="0">
+                        <p class="body-copy studio-note" id="studio-year-note"></p>
+                    </div>
+                    <div class="studio-control-group">
+                        <div class="d-flex justify-content-between align-items-center gap-3">
+                            <span class="studio-label mb-0">Cloud filter</span>
+                            <strong id="studio-cloud-label">20%</strong>
+                        </div>
+                        <input class="form-range studio-slider" id="studio-cloud-slider" type="range" min="5" max="80" step="5" value="20">
+                        <p class="body-copy studio-note">Used when querying actual Landsat scenes from the Landsat STAC catalog for the selected place and year.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8">
+                <div class="panel studio-map-panel">
+                    <div id="studio-map" aria-label="Landsat remote sensing studio map"></div>
+                    <div class="studio-popup" id="studio-popup" aria-live="polite">
+                        <strong id="studio-popup-title">Hotspot</strong>
+                        <p id="studio-popup-copy"></p>
+                    </div>
+                    <div class="studio-map-caption" id="studio-map-caption">
+                        Navigate globally, zoom to study areas, and use the controls to reinterpret the same place through different remote-sensing lenses.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row g-4 mt-1">
+            <div class="col-xl-4">
+                <div class="panel h-100">
+                    <div class="eyebrow">Spectral Reading</div>
+                    <h3 class="mb-2" id="studio-spectral-title">Spectral signature cue</h3>
+                    <div class="studio-spectral-chart" id="studio-spectral-chart"></div>
+                    <div class="mt-3">
+                        <div class="eyebrow">Hover Probe</div>
+                        <div class="studio-hover-probe" id="studio-hover-probe"></div>
+                    </div>
+                    <p class="body-copy mt-3" id="studio-spectral-copy"></p>
+                </div>
+            </div>
+            <div class="col-xl-4">
+                <div class="panel h-100">
+                    <div class="eyebrow">Index Insight</div>
+                    <h3 class="mb-2" id="studio-index-title">Index behavior</h3>
+                    <div class="studio-index-card" id="studio-index-card"></div>
+                </div>
+            </div>
+            <div class="col-xl-4">
+                <div class="panel h-100">
+                    <div class="eyebrow">Historical Pattern</div>
+                    <h3 class="mb-2" id="studio-history-title">Landscape change story</h3>
+                    <div class="studio-history-metrics" id="studio-history-metrics"></div>
+                    <p class="body-copy mt-3" id="studio-history-copy"></p>
+                </div>
+            </div>
+        </div>
+        <div class="row g-4 mt-1">
+            <div class="col-xl-5">
+                <div class="panel h-100">
+                    <div class="eyebrow">Actual Landsat Scenes</div>
+                    <h3 class="mb-2">Landsat STAC results for this hotspot and year</h3>
+                    <p class="body-copy mb-3">These are real scene products returned from a Landsat STAC catalog for the selected location and time window.</p>
+                    <div class="studio-scenes-list" id="studio-scenes-list" aria-live="polite"></div>
+                </div>
+            </div>
+            <div class="col-xl-7">
+                <div class="panel h-100">
+                    <div class="eyebrow">Selected Scene</div>
+                    <div class="studio-scene-detail" id="studio-scene-detail" aria-live="polite"></div>
+                    <div class="mt-3">
+                        <div class="eyebrow">Pixel Inspector</div>
+                        <div class="studio-pixel-inspector" id="studio-pixel-inspector" aria-live="polite"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-nav">
+            <a class="button" href="/studio/band-lab">Previous: band lab</a>
+            <a class="button button-primary" href="/briefing/products">Open products</a>
+        </div>
+    </section>
+</main>

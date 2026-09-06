@@ -1,0 +1,25 @@
+@model LandsatProgram.Models.ErrorViewModel
+@{
+    ViewData["Description"] = Model.Message;
+    ViewData["BrandHref"] = "/briefing";
+    ViewData["NavLinks"] = new[]
+    {
+        new LandsatProgram.Models.NavigationLink("Briefing", "/briefing"),
+        new LandsatProgram.Models.NavigationLink("Studio", "/studio")
+    };
+}
+
+<main class="shell container-xxl px-3 px-lg-4">
+    <section id="error" class="page-intro" aria-live="polite">
+        <div class="panel error-panel fade-up">
+            <div class="eyebrow">Error @Model.StatusCode</div>
+            <h1 class="title-flush error-title">@Model.Title</h1>
+            <p class="body-copy error-message">@Model.Message</p>
+            <div class="hero-actions error-actions">
+                <a class="button button-primary" href="/briefing">Go to briefing</a>
+                <a class="button" href="/studio">Open the studio</a>
+            </div>
+            <p class="table-note error-reference">Reference ID: @Model.RequestId</p>
+        </div>
+    </section>
+</main>

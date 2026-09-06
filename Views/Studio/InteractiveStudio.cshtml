@@ -1,0 +1,93 @@
+@{
+    ViewData["Title"] = "Landsat Program Explorer | Studio";
+    ViewData["Description"] = "Choose a short interactive Landsat tool: orbit lab, resolution lab, band lab, or remote-sensing studio.";
+    ViewData["OgTitle"] = "Landsat Program Explorer | Studio";
+    ViewData["OgDescription"] = "A short hub for Landsat orbit, resolution, band, and map-based exploration tools.";
+    ViewData["OgImage"] = "/img/landsat9.jpg";
+    ViewData["BodyClass"] = "page-labs";
+    ViewData["BrandHref"] = "/studio";
+    ViewData["BrandSubtitle"] = "Interactive tools";
+    ViewData["NavLinks"] = new[]
+    {
+        new NavigationLink("Briefing", "/briefing"),
+        new NavigationLink("Orbit", "/studio/orbit-lab"),
+        new NavigationLink("Resolution", "/studio/resolution-lab"),
+        new NavigationLink("Bands", "/studio/band-lab"),
+        new NavigationLink("Map Studio", "/studio/remote-sensing-studio"),
+        new NavigationLink("Products", "/briefing/products")
+    };
+
+    var tools = new[]
+    {
+        new { Number = "01", Title = "Orbit Lab", Text = "See how revisit cadence changes from one Landsat mission to Landsat 8 and 9 plus HLS context.", Href = "/studio/orbit-lab" },
+        new { Number = "02", Title = "Resolution Lab", Text = "Turn spatial, spectral, temporal, and radiometric resolution into something visual.", Href = "/studio/resolution-lab" },
+        new { Number = "03", Title = "Band Lab", Text = "Compare false color, water, burn, urban, and vegetation-oriented composites.", Href = "/studio/band-lab" },
+        new { Number = "04", Title = "Remote Sensing Studio", Text = "Use the map, hotspot controls, STAC scene lookup, and pixel interpretation together.", Href = "/studio/remote-sensing-studio" }
+    };
+}
+
+<section class="hero hero-compact" id="top">
+    <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="/img/landsat9.jpg">
+        <source data-src="/assets/landsat.mp4" type="video/mp4">
+    </video>
+    <button class="hero-video-toggle" type="button" data-video-toggle aria-pressed="false">Pause video</button>
+    <div class="hero-overlay"></div>
+    <div class="hero-grid container-xxl px-3 px-lg-4">
+        <div class="hero-copy fade-up">
+            <div class="eyebrow">Interactive Track | Labs + Studio</div>
+            <h1>Choose one Landsat tool and stay focused.</h1>
+            <p>
+                The labs are now short, dedicated pages. Start with a concept tool, or go straight to the map-based
+                remote-sensing studio.
+            </p>
+            <div class="hero-actions">
+                <a class="button button-primary" href="/studio/remote-sensing-studio">Open map studio</a>
+                <a class="button" href="/briefing">Back to briefing</a>
+            </div>
+        </div>
+        <aside class="hero-panel fade-up" aria-label="Studio structure">
+            <h2>Interactive pages</h2>
+            <ul class="hero-panel-list">
+                <li>
+                    <strong>Concept labs</strong>
+                    <span class="body-copy">Orbit, resolution, and band interpretation each have their own page.</span>
+                </li>
+                <li>
+                    <strong>Map studio</strong>
+                    <span class="body-copy">The larger OpenLayers workspace is no longer buried after the concept labs.</span>
+                </li>
+                <li>
+                    <strong>Short routes</strong>
+                    <span class="body-copy">Each page is easier to load, scan, and revisit during demos or classroom use.</span>
+                </li>
+            </ul>
+        </aside>
+    </div>
+</section>
+
+<main class="shell container-xxl px-3 px-lg-4">
+    <section id="studio-tools">
+        <div class="section-heading row g-3 align-items-end">
+            <div class="col-lg-7">
+                <div class="eyebrow">Studio Tools</div>
+                <h2>Pick the tool for the question in front of you</h2>
+            </div>
+            <div class="col-lg-5">
+                <p class="body-copy">
+                    This hub keeps the entry point short. Each card opens a focused page with only the controls needed for
+                    that learning task.
+                </p>
+            </div>
+        </div>
+        <div class="chapter-grid">
+            @foreach (var tool in tools)
+            {
+                <a class="chapter-card" href="@tool.Href">
+                    <span>@tool.Number</span>
+                    <strong>@tool.Title</strong>
+                    <p>@tool.Text</p>
+                </a>
+            }
+        </div>
+    </section>
+</main>

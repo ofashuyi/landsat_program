@@ -1,0 +1,52 @@
+@{
+    ViewData["Title"] = "Landsat Band Lab | Studio";
+    ViewData["Description"] = "A focused Landsat band-combination lab.";
+    ViewData["OgTitle"] = "Landsat Band Lab";
+    ViewData["OgDescription"] = "Compare band recipes for vegetation, burn, water, urban, and geology interpretation.";
+    ViewData["OgImage"] = "/img/landsat9.jpg";
+    ViewData["BodyClass"] = "page-labs";
+    ViewData["BrandHref"] = "/studio";
+    ViewData["BrandSubtitle"] = "Interactive tools";
+    ViewData["NavLinks"] = new[]
+    {
+        new NavigationLink("Studio Hub", "/studio"),
+        new NavigationLink("Orbit", "/studio/orbit-lab"),
+        new NavigationLink("Resolution", "/studio/resolution-lab"),
+        new NavigationLink("Bands", "/studio/band-lab"),
+        new NavigationLink("Map Studio", "/studio/remote-sensing-studio"),
+        new NavigationLink("Briefing", "/briefing")
+    };
+}
+
+<main class="shell container-xxl px-3 px-lg-4">
+    <section id="band-lab" class="page-intro">
+        <div class="section-heading row g-3 align-items-end">
+            <div class="col-lg-7">
+                <div class="eyebrow">Band Combination Lab</div>
+                <h1>See why different band recipes reveal different Earth stories</h1>
+            </div>
+            <div class="col-lg-5">
+                <p class="body-copy">
+                    A Landsat image is not just one picture. Different band combinations emphasize vegetation, burn scars,
+                    moisture, urban areas, water, and geology in different ways.
+                </p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-xl-4">
+                <div class="panel h-100">
+                    <div class="band-preset-list" id="band-preset-list"></div>
+                </div>
+            </div>
+            <div class="col-xl-8">
+                <div class="panel h-100">
+                    <div class="band-viewer" id="band-viewer" aria-live="polite"></div>
+                </div>
+            </div>
+        </div>
+        <div class="page-nav">
+            <a class="button" href="/studio/resolution-lab">Previous: resolution lab</a>
+            <a class="button button-primary" href="/studio/remote-sensing-studio">Next: map studio</a>
+        </div>
+    </section>
+</main>

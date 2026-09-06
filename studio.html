@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Redirecting to Landsat Labs &amp; Studio</title>
+    <meta http-equiv="refresh" content="0; url=/studio">
+    <link rel="canonical" href="/studio">
+</head>
+<body>
+    <p>Redirecting to <a href="/studio">the Landsat Labs &amp; Studio page</a>.</p>
+    <script>
+        const routes = {
+            "#orbit-lab": "/studio/orbit-lab",
+            "#resolution-lab": "/studio/resolution-lab",
+            "#band-lab": "/studio/band-lab",
+            "#studio": "/studio/remote-sensing-studio"
+        };
+        window.location.replace(routes[window.location.hash.toLowerCase()] || "/studio");
+    </script>
+</body>
+</html>

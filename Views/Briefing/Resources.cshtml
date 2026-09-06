@@ -1,0 +1,69 @@
+@{
+    ViewData["Title"] = "Landsat Resources | Briefing";
+    ViewData["Description"] = "Official Landsat portals, documentation, and return paths.";
+    ViewData["OgTitle"] = "Landsat Resources";
+    ViewData["OgDescription"] = "Continue to official Landsat resources or the interactive studio.";
+    ViewData["OgImage"] = "/img/landsat9.jpg";
+    ViewData["BodyClass"] = "page-briefing";
+    ViewData["BrandHref"] = "/briefing";
+    ViewData["BrandSubtitle"] = "Briefing chapters";
+    ViewData["NavLinks"] = new[]
+    {
+        new NavigationLink("Chapters", "/briefing"),
+        new NavigationLink("Overview", "/briefing/overview"),
+        new NavigationLink("Products", "/briefing/products"),
+        new NavigationLink("Resources", "/briefing/resources"),
+        new NavigationLink("Studio", "/studio")
+    };
+}
+
+<main class="shell container-xxl px-3 px-lg-4">
+    <section id="resources" class="page-intro">
+        <div class="section-heading row g-3 align-items-end">
+            <div class="col-lg-7">
+                <div class="eyebrow">Next Steps</div>
+                <h1>Continue with the right next page, dataset, or entry point</h1>
+            </div>
+            <div class="col-lg-5">
+                <p class="body-copy">
+                    Use official data portals when you are ready to work with the archive, or open the studio for a more
+                    visual and exploratory understanding first.
+                </p>
+            </div>
+        </div>
+        <div class="row g-4 source-grid">
+            <div class="col-md-6 col-xl-3">
+                <article class="source-card h-100">
+                    <h3>USGS EarthExplorer</h3>
+                    <p>Search, preview, and download Landsat collections and supporting products.</p>
+                    <a class="resource-link" href="https://earthexplorer.usgs.gov/" target="_blank" rel="noopener noreferrer">Open EarthExplorer</a>
+                </article>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <article class="source-card h-100">
+                    <h3>USGS Landsat Missions</h3>
+                    <p>Mission summaries, product documentation, collection guidance, and distribution details.</p>
+                    <a class="resource-link" href="https://www.usgs.gov/landsat-missions" target="_blank" rel="noopener noreferrer">Open USGS Landsat</a>
+                </article>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <article class="source-card h-100">
+                    <h3>NASA HLS</h3>
+                    <p>Harmonized Landsat Sentinel-2 overview, methods, product background, and access guidance.</p>
+                    <a class="resource-link" href="https://hls.gsfc.nasa.gov/" target="_blank" rel="noopener noreferrer">Open HLS</a>
+                </article>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <article class="source-card h-100">
+                    <h3>Interactive Studio</h3>
+                    <p>Open orbit, resolution, band, and map-based remote-sensing tools.</p>
+                    <a class="resource-link" href="/studio">Open studio</a>
+                </article>
+            </div>
+        </div>
+        <div class="page-nav">
+            <a class="button" href="/briefing/future">Previous: future direction</a>
+            <a class="button button-primary" href="/studio">Next: interactive studio</a>
+        </div>
+    </section>
+</main>

@@ -1,0 +1,72 @@
+{
+  "presets": [
+    {
+      "id": "natural",
+      "name": "Natural Color",
+      "combo": "4-3-2 style visible rendering",
+      "why": "Closest to what the eye expects, useful for general orientation and broad communication.",
+      "goodFor": "Coastlines, cities, clouds, general land cover context",
+      "caution": "Vegetation stress and burn scars can be less obvious than in false-color views.",
+      "colors": {
+        "landA": "rgba(95, 144, 94, 0.92)",
+        "landB": "rgba(76, 126, 79, 0.9)",
+        "landC": "rgba(124, 157, 94, 0.88)",
+        "landD": "rgba(166, 132, 92, 0.84)",
+        "water": "rgba(73, 141, 208, 0.9)",
+        "city": "rgba(214, 214, 214, 0.38)",
+        "scar": "rgba(104, 72, 52, 0.28)"
+      }
+    },
+    {
+      "id": "false-vegetation",
+      "name": "Color Infrared",
+      "combo": "5-4-3 false color",
+      "why": "Pushes healthy vegetation into vivid reds by using near-infrared reflectance.",
+      "goodFor": "Vegetation vigor, wetlands, crop boundaries, water-land separation",
+      "caution": "Urban surfaces and bare ground can look unfamiliar to non-remote-sensing audiences.",
+      "colors": {
+        "landA": "rgba(214, 76, 92, 0.94)",
+        "landB": "rgba(189, 56, 84, 0.92)",
+        "landC": "rgba(241, 107, 122, 0.88)",
+        "landD": "rgba(184, 150, 81, 0.82)",
+        "water": "rgba(40, 77, 138, 0.96)",
+        "city": "rgba(187, 199, 218, 0.34)",
+        "scar": "rgba(112, 78, 58, 0.26)"
+      }
+    },
+    {
+      "id": "burn-moisture",
+      "name": "Burn And Moisture",
+      "combo": "7-6-4 style SWIR emphasis",
+      "why": "Highlights moisture differences and makes burn scars, dry vegetation, and exposed soils more distinct.",
+      "goodFor": "Wildfire assessment, drought patterns, moisture gradients, disturbance mapping",
+      "caution": "This is analytically powerful but visually abstract compared with natural color.",
+      "colors": {
+        "landA": "rgba(116, 79, 54, 0.94)",
+        "landB": "rgba(136, 93, 63, 0.9)",
+        "landC": "rgba(184, 145, 79, 0.86)",
+        "landD": "rgba(230, 104, 79, 0.8)",
+        "water": "rgba(62, 98, 169, 0.9)",
+        "city": "rgba(210, 183, 152, 0.24)",
+        "scar": "rgba(188, 77, 44, 0.5)"
+      }
+    },
+    {
+      "id": "urban-geology",
+      "name": "Urban / Geology",
+      "combo": "7-5-3 style contrast",
+      "why": "Separates built-up surfaces, bare materials, and some geologic variation more strongly than natural color.",
+      "goodFor": "Urban extent, exposed soils, lithologic contrast, infrastructure context",
+      "caution": "Vegetation cues become less intuitive than in natural or color-infrared renderings.",
+      "colors": {
+        "landA": "rgba(102, 134, 88, 0.88)",
+        "landB": "rgba(139, 118, 74, 0.84)",
+        "landC": "rgba(196, 166, 103, 0.82)",
+        "landD": "rgba(204, 187, 168, 0.78)",
+        "water": "rgba(58, 89, 158, 0.92)",
+        "city": "rgba(224, 215, 199, 0.44)",
+        "scar": "rgba(117, 86, 62, 0.24)"
+      }
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+@{
+    ViewData["Title"] = "Landsat Orbit Lab | Studio";
+    ViewData["Description"] = "A focused Landsat orbit and coverage lab.";
+    ViewData["OgTitle"] = "Landsat Orbit Lab";
+    ViewData["OgDescription"] = "See how Landsat moves around Earth and how revisit cadence changes.";
+    ViewData["OgImage"] = "/img/landsat9.jpg";
+    ViewData["BodyClass"] = "page-labs";
+    ViewData["BrandHref"] = "/studio";
+    ViewData["BrandSubtitle"] = "Interactive tools";
+    ViewData["NavLinks"] = new[]
+    {
+        new NavigationLink("Studio Hub", "/studio"),
+        new NavigationLink("Orbit", "/studio/orbit-lab"),
+        new NavigationLink("Resolution", "/studio/resolution-lab"),
+        new NavigationLink("Bands", "/studio/band-lab"),
+        new NavigationLink("Map Studio", "/studio/remote-sensing-studio"),
+        new NavigationLink("Briefing", "/briefing")
+    };
+}
+
+<main class="shell container-xxl px-3 px-lg-4">
+    <section id="orbit-lab" class="page-intro">
+        <div class="section-heading row g-3 align-items-end">
+            <div class="col-lg-7">
+                <div class="eyebrow">Orbit And Coverage Lab</div>
+                <h1>See how Landsat actually moves around Earth</h1>
+            </div>
+            <div class="col-lg-5">
+                <p class="body-copy">
+                    Landsat flies in a near-polar, sun-synchronous orbit at about 705 km altitude. One satellite revisits
+                    a place every 16 days; Landsat 8 and 9 together create an 8-day cadence.
+                </p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-xl-7">
+                <div class="panel orbit-panel h-100">
+                    <div class="orbit-visual" id="orbit-visual">
+                        <div class="orbit-glow"></div>
+                        <div class="earth-core">
+                            <div class="earth-label">Earth</div>
+                        </div>
+                        <svg class="orbit-svg" viewBox="0 0 600 600" aria-hidden="true">
+                            <circle class="orbit-ring orbit-ring-main" cx="300" cy="300" r="200"></circle>
+                            <circle class="orbit-ring orbit-ring-alt" cx="300" cy="300" r="235"></circle>
+                            <circle class="orbit-ring orbit-ring-alt" cx="300" cy="300" r="270"></circle>
+                            <path class="swath-path" d="M170 120 C245 220, 355 380, 430 480"></path>
+                            <path class="swath-path" d="M430 120 C355 220, 245 380, 170 480"></path>
+                        </svg>
+                        <div class="satellite-dot landsat-dot" id="satellite-a"><span>L8</span></div>
+                        <div class="satellite-dot landsat-dot secondary" id="satellite-b"><span>L9</span></div>
+                        <div class="satellite-dot sentinel-dot" id="satellite-c"><span>S2A</span></div>
+                        <div class="satellite-dot sentinel-dot" id="satellite-d"><span>S2B</span></div>
+                        <div class="satellite-dot sentinel-dot" id="satellite-e"><span>S2C</span></div>
+                    </div>
+                    <p class="orbit-caption" id="orbit-caption"></p>
+                </div>
+            </div>
+            <div class="col-xl-5">
+                <div class="panel h-100">
+                    <div class="eyebrow">Constellation Modes</div>
+                    <div class="mode-toggle" id="orbit-modes"></div>
+                    <div class="orbit-facts-grid" id="orbit-facts" aria-live="polite"></div>
+                    <div class="orbit-story" aria-live="polite">
+                        <h3 id="orbit-title">Orbit mode</h3>
+                        <p class="body-copy" id="orbit-description"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-nav">
+            <a class="button" href="/studio">All tools</a>
+            <a class="button button-primary" href="/studio/resolution-lab">Next: resolution lab</a>
+        </div>
+    </section>
+</main>

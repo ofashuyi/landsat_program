@@ -1,0 +1,24 @@
+@model LandsatProgram.Models.TopNavigationViewModel
+
+<header class="topbar navbar navbar-expand-lg navbar-dark">
+    <div class="topbar-inner container-xxl px-3 px-lg-4">
+        <a class="brand navbar-brand me-0" href="@Model.BrandHref">
+            <img src="/img/logo.png" alt="Landsat logo">
+            <div class="brand-copy">
+                <strong>Landsat Program Explorer</strong>
+                <span>@Model.BrandSubtitle</span>
+            </div>
+        </a>
+        <button class="navbar-toggler border-0 shadow-none px-0" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNav" aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <nav class="collapse navbar-collapse justify-content-lg-end" id="primaryNav" aria-label="Primary">
+            <div class="topnav navbar-nav ms-lg-auto">
+                @foreach (var link in Model.Links)
+                {
+                    <a class="nav-link px-0 px-lg-2" href="@link.Href">@Html.Raw(link.Label)</a>
+                }
+            </div>
+        </nav>
+    </div>
+</header>

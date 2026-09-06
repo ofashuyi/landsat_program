@@ -1,0 +1,90 @@
+{
+  "impactStories": [
+    {
+      "id": "water",
+      "label": "Water",
+      "title": "Water accounting and hydrology",
+      "summary": "Landsat is a backbone dataset for monitoring reservoirs, surface-water extent, snow and ice patterns, water quality, and irrigation water use. Thermal measurements are especially important for evapotranspiration and drought assessment.",
+      "metrics": [
+        { "label": "Why it matters", "value": "Water supply and drought resilience" },
+        { "label": "Key capability", "value": "Optical + thermal" },
+        { "label": "Typical scale", "value": "Field to watershed" }
+      ],
+      "story": "From irrigation districts to river basins, Landsat helps convert imagery into decisions about consumptive water use, crop stress, reservoir conditions, and changing hydrologic patterns."
+    },
+    {
+      "id": "forests",
+      "label": "Forests",
+      "title": "Forests, biomass, and carbon",
+      "summary": "Because Landsat has been observing land for more than five decades, it is one of the strongest tools for tracking deforestation, recovery, disturbance history, and forest productivity over time.",
+      "metrics": [
+        { "label": "Why it matters", "value": "Carbon, habitat, and land-use change" },
+        { "label": "Key capability", "value": "Long time series" },
+        { "label": "Typical fusion", "value": "Landsat + GEDI" }
+      ],
+      "story": "Landsat shows where forest change happened and when; GEDI adds the missing 3D structure. Together they support biomass, habitat, and sustainable forest management applications."
+    },
+    {
+      "id": "agriculture",
+      "label": "Agriculture",
+      "title": "Agriculture and food systems",
+      "summary": "Landsat supports crop condition assessment, acreage tracking, field-scale land management, and water-use monitoring. Moderate-resolution thermal data makes it unusually powerful for agricultural stress detection.",
+      "metrics": [
+        { "label": "Why it matters", "value": "Food and irrigation security" },
+        { "label": "Key capability", "value": "Thermal water-use insights" },
+        { "label": "Typical cadence", "value": "8-day Landsat pair or faster with HLS" }
+      ],
+      "story": "Landsat helps move agricultural monitoring beyond color imagery toward energy balance, evapotranspiration, and crop stress signals that matter operationally."
+    },
+    {
+      "id": "cities",
+      "label": "Cities",
+      "title": "Urban heat and built environments",
+      "summary": "Thermal bands reveal how cities retain heat, while optical bands show expansion, impervious surfaces, vegetation loss, and neighborhood-scale environmental inequity patterns.",
+      "metrics": [
+        { "label": "Why it matters", "value": "Public health and resilience" },
+        { "label": "Key capability", "value": "Surface temperature + land cover" },
+        { "label": "Complement", "value": "ECOSTRESS for extra thermal detail" }
+      ],
+      "story": "Landsat provides repeatable heat-island context over decades, which is critical for planning cooling infrastructure, greening strategies, and heat-risk interventions."
+    },
+    {
+      "id": "hazards",
+      "label": "Hazards",
+      "title": "Wildfire, floods, and environmental disturbance",
+      "summary": "Landsat supports burn severity mapping, recovery monitoring, flood extent interpretation, and broader land disturbance analysis with a record long enough to show whether a current event is exceptional or part of a trend.",
+      "metrics": [
+        { "label": "Why it matters", "value": "Preparedness and recovery" },
+        { "label": "Key capability", "value": "Before-and-after consistency" },
+        { "label": "Environmental value", "value": "Trend context over decades" }
+      ],
+      "story": "For hazards, Landsat is often the archive that anchors event context, recovery trajectories, and long-term land-change baselines."
+    }
+  ],
+  "complementaryMissions": [
+    {
+      "id": "sentinel2",
+      "name": "Sentinel-2",
+      "short": "Adds more frequent Landsat-like optical coverage at 10 to 20 m scales.",
+      "detail": "NASA's HLS project harmonizes Landsat 8/9 with Sentinel-2A/B/C to create analysis-ready surface reflectance with a global median repeat under 1.4 days in 2025."
+    },
+    {
+      "id": "ecostress",
+      "name": "ECOSTRESS",
+      "short": "Adds detailed thermal insight into plant temperature and evapotranspiration.",
+      "detail": "ECOSTRESS measures plant temperature from the International Space Station and helps quantify evapotranspiration and water stress, complementing Landsat's broader, stable land record."
+    },
+    {
+      "id": "swot",
+      "name": "SWOT",
+      "short": "Adds water-surface elevation and changing surface-water geometry.",
+      "detail": "SWOT provides the first global survey of Earth's surface water elevation, giving hydrologists information that pairs naturally with Landsat's water extent and land-context observations."
+    },
+    {
+      "id": "gedi",
+      "name": "GEDI",
+      "short": "Adds vertical forest structure and biomass context.",
+      "detail": "GEDI measures the 3D structure of forests from lidar on the ISS. Landsat shows disturbance history across space and time; GEDI adds canopy height and structural detail."
+    }
+  ]
+}

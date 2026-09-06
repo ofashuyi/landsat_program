@@ -1,0 +1,86 @@
+@{
+    ViewData["Title"] = "Landsat Mission Fleet | Briefing";
+    ViewData["Description"] = "Filter, inspect, and compare Landsat missions.";
+    ViewData["OgTitle"] = "Landsat Mission Fleet";
+    ViewData["OgDescription"] = "Explore Landsat mission continuity, spacecraft generations, and sensor evolution.";
+    ViewData["OgImage"] = "/img/landsat9.jpg";
+    ViewData["BodyClass"] = "page-briefing";
+    ViewData["BrandHref"] = "/briefing";
+    ViewData["BrandSubtitle"] = "Briefing chapters";
+    ViewData["NavLinks"] = new[]
+    {
+        new NavigationLink("Chapters", "/briefing"),
+        new NavigationLink("Overview", "/briefing/overview"),
+        new NavigationLink("Foundations", "/briefing/foundations"),
+        new NavigationLink("Fleet", "/briefing/missions"),
+        new NavigationLink("Applications", "/briefing/applications"),
+        new NavigationLink("Products", "/briefing/products"),
+        new NavigationLink("Studio", "/studio")
+    };
+}
+
+<main class="shell container-xxl px-3 px-lg-4">
+    <section id="missions" class="page-intro">
+        <div class="section-heading row g-3 align-items-end">
+            <div class="col-lg-7">
+                <div class="eyebrow">Mission Explorer</div>
+                <h1>Move through the fleet, not just the timeline</h1>
+            </div>
+            <div class="col-lg-5">
+                <p class="body-copy">
+                    Filter by era or status, search by mission or sensor, and compare what changed from one spacecraft
+                    generation to the next.
+                </p>
+            </div>
+        </div>
+        <div class="row g-4 explorer-layout">
+            <div class="col-xl-7">
+                <div class="panel h-100">
+                    <div class="row g-3 toolbar">
+                        <div class="col-md-7">
+                            <input class="input form-control" id="mission-search" type="search" placeholder="Search by mission, sensor, or keyword">
+                        </div>
+                        <div class="col-md-5">
+                            <select class="select form-select" id="mission-sort" aria-label="Sort missions">
+                                <option value="asc">Sort: earliest first</option>
+                                <option value="desc">Sort: latest first</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="chip-row" id="filter-row" aria-label="Mission filters"></div>
+                    <div class="mission-grid" id="mission-grid" aria-live="polite"></div>
+                </div>
+            </div>
+            <div class="col-xl-5">
+                <aside class="panel mission-hero h-100" id="mission-detail" aria-live="polite">
+                    <img class="mission-image" id="detail-image" src="/img/landsat9.jpg" alt="Landsat mission image">
+                    <div>
+                        <div class="eyebrow" id="detail-eyebrow">Selected Mission</div>
+                        <h2 id="detail-title">Landsat 9</h2>
+                        <p class="body-copy" id="detail-summary"></p>
+                    </div>
+                    <div class="detail-grid" id="detail-grid"></div>
+                    <div class="mission-detail-copy">
+                        <p id="detail-highlight"></p>
+                    </div>
+                </aside>
+            </div>
+        </div>
+        <div class="panel compare-panel mt-4">
+            <div class="compare-header">
+                <div>
+                    <div class="eyebrow">Mission Compare</div>
+                    <h3>Put missions side by side</h3>
+                    <p class="body-copy">Compare up to three missions across status, launch date, sensors, revisit cadence, resolution, and why each mission mattered.</p>
+                </div>
+                <button class="chip-button compare-clear" id="compare-clear" type="button">Clear compare</button>
+            </div>
+            <div class="compare-selection" id="compare-selection" aria-live="polite"></div>
+            <div class="compare-grid" id="compare-grid" aria-live="polite"></div>
+        </div>
+        <div class="page-nav">
+            <a class="button" href="/briefing/foundations">Previous: foundations</a>
+            <a class="button button-primary" href="/briefing/applications">Next: applications</a>
+        </div>
+    </section>
+</main>

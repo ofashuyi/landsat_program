@@ -1,0 +1,57 @@
+@{
+    ViewData["Title"] = "Landsat Resolution Lab | Studio";
+    ViewData["Description"] = "A focused Landsat resolution lab.";
+    ViewData["OgTitle"] = "Landsat Resolution Lab";
+    ViewData["OgDescription"] = "Explore spatial, spectral, temporal, and radiometric resolution.";
+    ViewData["OgImage"] = "/img/landsat9.jpg";
+    ViewData["BodyClass"] = "page-labs";
+    ViewData["BrandHref"] = "/studio";
+    ViewData["BrandSubtitle"] = "Interactive tools";
+    ViewData["NavLinks"] = new[]
+    {
+        new NavigationLink("Studio Hub", "/studio"),
+        new NavigationLink("Orbit", "/studio/orbit-lab"),
+        new NavigationLink("Resolution", "/studio/resolution-lab"),
+        new NavigationLink("Bands", "/studio/band-lab"),
+        new NavigationLink("Map Studio", "/studio/remote-sensing-studio"),
+        new NavigationLink("Briefing", "/briefing")
+    };
+}
+
+<main class="shell container-xxl px-3 px-lg-4">
+    <section id="resolution-lab" class="page-intro">
+        <div class="section-heading row g-3 align-items-end">
+            <div class="col-lg-7">
+                <div class="eyebrow">Resolution Lab</div>
+                <h1>Explore the four resolutions that make Landsat useful</h1>
+            </div>
+            <div class="col-lg-5">
+                <p class="body-copy">
+                    Landsat's value comes from combining spatial, spectral, temporal, and radiometric resolution.
+                    This page turns those terms into something visual and intuitive.
+                </p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-xl-4">
+                <div class="panel h-100">
+                    <div class="resolution-tabs" id="resolution-tabs"></div>
+                    <div aria-live="polite">
+                        <h3 id="resolution-title">Spatial resolution</h3>
+                        <p class="body-copy" id="resolution-description"></p>
+                        <div class="resolution-facts" id="resolution-facts"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8">
+                <div class="panel resolution-stage h-100">
+                    <div class="resolution-visual" id="resolution-visual"></div>
+                </div>
+            </div>
+        </div>
+        <div class="page-nav">
+            <a class="button" href="/studio/orbit-lab">Previous: orbit lab</a>
+            <a class="button button-primary" href="/studio/band-lab">Next: band lab</a>
+        </div>
+    </section>
+</main>

@@ -1,0 +1,125 @@
+@{
+    ViewData["Title"] = "Landsat Products | Briefing";
+    ViewData["Description"] = "Choose the Landsat product or workflow that best fits the job.";
+    ViewData["OgTitle"] = "Landsat Products";
+    ViewData["OgDescription"] = "A concise guide to Landsat Level-1, Surface Reflectance, Surface Temperature, ARD, and HLS.";
+    ViewData["OgImage"] = "/img/landsat9.jpg";
+    ViewData["BodyClass"] = "page-briefing";
+    ViewData["BrandHref"] = "/briefing";
+    ViewData["BrandSubtitle"] = "Briefing chapters";
+    ViewData["NavLinks"] = new[]
+    {
+        new NavigationLink("Chapters", "/briefing"),
+        new NavigationLink("Applications", "/briefing/applications"),
+        new NavigationLink("Products", "/briefing/products"),
+        new NavigationLink("Future", "/briefing/future"),
+        new NavigationLink("Resources", "/briefing/resources"),
+        new NavigationLink("Studio", "/studio")
+    };
+}
+
+<main class="shell container-xxl px-3 px-lg-4">
+    <section id="products" class="page-intro">
+        <div class="section-heading row g-3 align-items-end">
+            <div class="col-lg-7">
+                <div class="eyebrow">Products</div>
+                <h1>Choose the product and workflow that matter most</h1>
+            </div>
+            <div class="col-lg-5">
+                <p class="body-copy">
+                    This page turns product jargon into practical choices. Use the decision guide first, then keep the product
+                    reference nearby.
+                </p>
+            </div>
+        </div>
+        <div class="row g-4" id="workflow-guide">
+            <div class="col-xl-5">
+                <div class="panel h-100">
+                    <div class="workflow-questions" id="workflow-questions"></div>
+                </div>
+            </div>
+            <div class="col-xl-7">
+                <div class="panel h-100">
+                    <div class="workflow-result" id="workflow-result" aria-live="polite"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row g-4 mt-1" id="innovations">
+            <div class="col-lg-6">
+                <article class="innovation-card h-100">
+                    <h3>Collection 2 Level-2 science products</h3>
+                    <p>Modern surface reflectance and surface temperature products improve calibration, geometry, metadata, and quality layers.</p>
+                </article>
+            </div>
+            <div class="col-lg-6">
+                <article class="innovation-card h-100">
+                    <h3>Harmonized Landsat Sentinel-2</h3>
+                    <p>HLS merges Landsat 8/9 with Sentinel-2 into one harmonized surface-reflectance workflow with denser revisit coverage.</p>
+                </article>
+            </div>
+        </div>
+        <div class="table-wrap mt-4">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>What it provides</th>
+                        <th>Best for</th>
+                        <th>Key notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Collection 2 Level-1</strong></td>
+                        <td>Calibrated and terrain-corrected source imagery.</td>
+                        <td>Custom atmospheric correction, specialized preprocessing, research pipelines.</td>
+                        <td>Foundation for downstream science products across the archive.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Collection 2 Surface Reflectance</strong></td>
+                        <td>Atmospherically corrected reflectance for land-surface analysis.</td>
+                        <td>Vegetation indices, land-cover change, water mapping, multi-date comparisons.</td>
+                        <td>30 m products; strong default choice for most optical workflows.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Collection 2 Surface Temperature</strong></td>
+                        <td>Land surface temperature in Kelvin from thermal bands plus auxiliary inputs.</td>
+                        <td>Heat-risk analysis, evapotranspiration, drought, wildfire, urban heat islands.</td>
+                        <td>Available for Landsat 4-9 where thermal processing requirements are met.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>U.S. ARD</strong></td>
+                        <td>Tiled analysis-ready products built for immediate time-series work.</td>
+                        <td>Large-area monitoring, repeat analytics, operational pipelines.</td>
+                        <td>Strong fit for automated workflows and consistent pixel alignment.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>HLS Version 2.0</strong></td>
+                        <td>Harmonized Landsat and Sentinel-2 surface reflectance.</td>
+                        <td>High-temporal monitoring where a 16-day Landsat cadence alone is too slow.</td>
+                        <td>Freely available with two- to three-day latency and much denser revisit coverage.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="product-card-list mt-4" aria-label="Landsat product guide cards">
+            <article class="product-card">
+                <h3>Collection 2 Surface Reflectance</h3>
+                <dl><dt>Best for</dt><dd>Vegetation indices, land-cover change, water mapping, and multi-date comparisons.</dd></dl>
+            </article>
+            <article class="product-card">
+                <h3>Collection 2 Surface Temperature</h3>
+                <dl><dt>Best for</dt><dd>Heat-risk analysis, evapotranspiration, drought, wildfire, and urban heat islands.</dd></dl>
+            </article>
+            <article class="product-card">
+                <h3>HLS Version 2.0</h3>
+                <dl><dt>Best for</dt><dd>High-temporal monitoring where Landsat's 16-day cadence alone is too slow.</dd></dl>
+            </article>
+        </div>
+        <p class="table-note">If the goal is modern operational analysis, Surface Reflectance, Surface Temperature, ARD, and HLS should usually take priority over a Level-1-only workflow.</p>
+        <div class="page-nav">
+            <a class="button" href="/briefing/applications">Previous: applications</a>
+            <a class="button button-primary" href="/briefing/future">Next: future direction</a>
+        </div>
+    </section>
+</main>

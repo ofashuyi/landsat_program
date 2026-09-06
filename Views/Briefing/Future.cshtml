@@ -1,0 +1,59 @@
+@{
+    ViewData["Title"] = "Landsat Future Direction | Briefing";
+    ViewData["Description"] = "What is stable and what is still evolving for Landsat continuity.";
+    ViewData["OgTitle"] = "Landsat Future Direction";
+    ViewData["OgDescription"] = "A short page on Landsat continuity and the evolving next-generation architecture.";
+    ViewData["OgImage"] = "/img/landsat9.jpg";
+    ViewData["BodyClass"] = "page-briefing";
+    ViewData["BrandHref"] = "/briefing";
+    ViewData["BrandSubtitle"] = "Briefing chapters";
+    ViewData["NavLinks"] = new[]
+    {
+        new NavigationLink("Chapters", "/briefing"),
+        new NavigationLink("Products", "/briefing/products"),
+        new NavigationLink("Future", "/briefing/future"),
+        new NavigationLink("Resources", "/briefing/resources"),
+        new NavigationLink("Studio", "/studio")
+    };
+}
+
+<main class="shell container-xxl px-3 px-lg-4">
+    <section id="future" class="page-intro">
+        <div class="section-heading row g-3 align-items-end">
+            <div class="col-lg-7">
+                <div class="eyebrow">Future Direction</div>
+                <h1>Close with what is stable and what is still changing</h1>
+            </div>
+            <div class="col-lg-5">
+                <p class="body-copy">
+                    As of April 13, 2026, NASA states that the Landsat Next project is assessing alternate mission architectures
+                    to support more affordable ways to maintain Landsat continuity under the FY26 President's Budget Request.
+                </p>
+            </div>
+        </div>
+        <div class="row g-4 resource-grid">
+            <div class="col-md-6 col-xl-4">
+                <article class="resource-card h-100">
+                    <h3>What is stable</h3>
+                    <p>The need for repeat global land imaging, calibration quality, long-term consistency, and public access remains clear.</p>
+                </article>
+            </div>
+            <div class="col-md-6 col-xl-4">
+                <article class="resource-card h-100">
+                    <h3>What is evolving</h3>
+                    <p>The exact mission architecture is being reassessed for affordability and continuity.</p>
+                </article>
+            </div>
+            <div class="col-md-6 col-xl-4">
+                <article class="resource-card h-100">
+                    <h3>What users can do now</h3>
+                    <p>Build workflows around Landsat 8/9, Collection 2, and HLS while the next-generation architecture is refined.</p>
+                </article>
+            </div>
+        </div>
+        <div class="page-nav">
+            <a class="button" href="/briefing/products">Previous: products</a>
+            <a class="button button-primary" href="/briefing/resources">Next: resources</a>
+        </div>
+    </section>
+</main>

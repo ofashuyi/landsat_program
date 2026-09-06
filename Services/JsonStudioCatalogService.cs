@@ -1,0 +1,36 @@
+using System.Text.Json;
+using LandsatProgram.Models;
+
+namespace LandsatProgram.Services;
+
+public sealed class JsonStudioCatalogService : IStudioCatalogService
+{
+    private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
+
+    private readonly IWebHostEnvironment _environment;
+    private StudioCatalog? _cachedCatalog;
+
+    public JsonStudioCatalogService(IWebHostEnvironment environment)
+    {
+        _environment = environment;
+    }
+
+    public async Task<StudioCatalog> GetCatalogAsync(CancellationToken cancellationToken = default)
+    {
+        if (_cachedCatalog is not null)
+        {
+            return _cachedCatalog;
+        }
+
+        var path = Path.Combine(_environment.ContentRootPath, "Data", "studio-catalog.json");
+        await using var stream = File.OpenRead(path);
+        var catalog = await JsonSerializer.DeserializeAsync<StudioCatalog>(stream, JsonOptions, cancellationToken);
+
+        _cachedCatalog = catalog ?? new StudioCatalog(
+            Array.Empty<StudioHotspot>(),
+            new StudioOptions(Array.Empty<StudioOption>(), Array.Empty<StudioOption>(), Array.Empty<StudioOption>()),
+            new Dictionary<string, StudioModeDetail>());
+
+        return _cachedCatalog;
+    }
+}

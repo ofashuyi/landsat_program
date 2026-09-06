@@ -1,0 +1,24 @@
+# Build output
+bin/
+obj/
+build/logs/
+logs/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Generated/minified assets (produced by build/Minify-Assets.ps1 during Release publish)
+css/app.min.css
+js/app.min.js
+
+# Downloaded local build tools (portable Node.js + esbuild)
+tools/
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# OS cruft
+.DS_Store
+Thumbs.db

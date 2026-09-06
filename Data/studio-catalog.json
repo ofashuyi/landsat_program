@@ -1,0 +1,308 @@
+{
+  "hotspots": [
+    {
+      "id": "las-vegas",
+      "name": "Las Vegas Growth",
+      "short": "Urban expansion and desert edge change",
+      "center": [ -115.1728, 36.1147 ],
+      "zoom": 9,
+      "years": [
+        {
+          "year": 1984,
+          "note": "Urban footprint is still compact relative to the wider basin.",
+          "footprintKm": 11,
+          "metrics": { "vegetation": 18, "water": 8, "heat": 42, "urban": 24, "disturbance": 12 },
+          "indices": { "ndvi": 0.18, "ndwi": 0.05, "nbr": 0.21, "ndbi": 0.24, "lst": 42 }
+        },
+        {
+          "year": 1999,
+          "note": "Rapid outward growth increases impervious surfaces and thermal load.",
+          "footprintKm": 16,
+          "metrics": { "vegetation": 15, "water": 7, "heat": 45, "urban": 36, "disturbance": 18 },
+          "indices": { "ndvi": 0.15, "ndwi": 0.03, "nbr": 0.18, "ndbi": 0.36, "lst": 45 }
+        },
+        {
+          "year": 2013,
+          "note": "Metropolitan structure becomes more continuous and heat retention rises.",
+          "footprintKm": 21,
+          "metrics": { "vegetation": 13, "water": 6, "heat": 48, "urban": 48, "disturbance": 21 },
+          "indices": { "ndvi": 0.13, "ndwi": 0.02, "nbr": 0.16, "ndbi": 0.48, "lst": 48 }
+        },
+        {
+          "year": 2025,
+          "note": "Urban intensity remains the dominant signal in the valley floor.",
+          "footprintKm": 24,
+          "metrics": { "vegetation": 12, "water": 6, "heat": 50, "urban": 56, "disturbance": 22 },
+          "indices": { "ndvi": 0.12, "ndwi": 0.01, "nbr": 0.14, "ndbi": 0.56, "lst": 50 }
+        }
+      ]
+    },
+    {
+      "id": "aral-sea",
+      "name": "Aral Sea Retreat",
+      "short": "Water loss, salinity, and exposed basin change",
+      "center": [ 60.5, 45.4 ],
+      "zoom": 6,
+      "years": [
+        {
+          "year": 1984,
+          "note": "A much larger open-water surface still dominates the basin.",
+          "footprintKm": 95,
+          "metrics": { "vegetation": 12, "water": 81, "heat": 24, "urban": 6, "disturbance": 18 },
+          "indices": { "ndvi": 0.12, "ndwi": 0.61, "nbr": 0.09, "ndbi": 0.06, "lst": 24 }
+        },
+        {
+          "year": 2000,
+          "note": "Fragmentation and shoreline retreat become unmistakable.",
+          "footprintKm": 72,
+          "metrics": { "vegetation": 10, "water": 58, "heat": 29, "urban": 7, "disturbance": 33 },
+          "indices": { "ndvi": 0.10, "ndwi": 0.42, "nbr": 0.04, "ndbi": 0.07, "lst": 29 }
+        },
+        {
+          "year": 2013,
+          "note": "Large exposed surfaces change moisture and thermal behavior across the basin.",
+          "footprintKm": 44,
+          "metrics": { "vegetation": 8, "water": 29, "heat": 35, "urban": 8, "disturbance": 49 },
+          "indices": { "ndvi": 0.08, "ndwi": 0.18, "nbr": -0.02, "ndbi": 0.08, "lst": 35 }
+        },
+        {
+          "year": 2025,
+          "note": "Water persists in separated zones while exposed sediments dominate the landscape story.",
+          "footprintKm": 39,
+          "metrics": { "vegetation": 7, "water": 24, "heat": 37, "urban": 8, "disturbance": 54 },
+          "indices": { "ndvi": 0.07, "ndwi": 0.14, "nbr": -0.05, "ndbi": 0.08, "lst": 37 }
+        }
+      ]
+    },
+    {
+      "id": "amazon",
+      "name": "Amazon Frontier",
+      "short": "Deforestation and fragmentation over decades",
+      "center": [ -55.2, -11.2 ],
+      "zoom": 6,
+      "years": [
+        {
+          "year": 1985,
+          "note": "Large connected forest cover still dominates the visible landscape.",
+          "footprintKm": 82,
+          "metrics": { "vegetation": 86, "water": 18, "heat": 27, "urban": 4, "disturbance": 10 },
+          "indices": { "ndvi": 0.79, "ndwi": 0.18, "nbr": 0.62, "ndbi": 0.04, "lst": 27 }
+        },
+        {
+          "year": 2001,
+          "note": "Road corridors and clearings increase fragmentation along the frontier arc.",
+          "footprintKm": 88,
+          "metrics": { "vegetation": 71, "water": 17, "heat": 30, "urban": 5, "disturbance": 26 },
+          "indices": { "ndvi": 0.63, "ndwi": 0.16, "nbr": 0.41, "ndbi": 0.05, "lst": 30 }
+        },
+        {
+          "year": 2015,
+          "note": "Disturbance mosaics become easier to trace in optical and SWIR-focused views.",
+          "footprintKm": 94,
+          "metrics": { "vegetation": 59, "water": 16, "heat": 33, "urban": 6, "disturbance": 39 },
+          "indices": { "ndvi": 0.51, "ndwi": 0.15, "nbr": 0.24, "ndbi": 0.06, "lst": 33 }
+        },
+        {
+          "year": 2025,
+          "note": "Landscape continuity remains under pressure despite local variations in clearing rates.",
+          "footprintKm": 99,
+          "metrics": { "vegetation": 54, "water": 15, "heat": 35, "urban": 7, "disturbance": 44 },
+          "indices": { "ndvi": 0.47, "ndwi": 0.14, "nbr": 0.18, "ndbi": 0.07, "lst": 35 }
+        }
+      ]
+    },
+    {
+      "id": "phoenix",
+      "name": "Phoenix Heat Island",
+      "short": "Thermal and urban surface intensification",
+      "center": [ -112.074, 33.4484 ],
+      "zoom": 9,
+      "years": [
+        {
+          "year": 1984,
+          "note": "The thermal contrast between built and less-built surfaces is visible but more limited in extent.",
+          "footprintKm": 13,
+          "metrics": { "vegetation": 16, "water": 4, "heat": 41, "urban": 28, "disturbance": 11 },
+          "indices": { "ndvi": 0.16, "ndwi": 0.02, "nbr": 0.19, "ndbi": 0.28, "lst": 41 }
+        },
+        {
+          "year": 1999,
+          "note": "Impervious cover expands and high nighttime heat storage becomes a larger issue.",
+          "footprintKm": 18,
+          "metrics": { "vegetation": 14, "water": 4, "heat": 45, "urban": 39, "disturbance": 14 },
+          "indices": { "ndvi": 0.14, "ndwi": 0.02, "nbr": 0.17, "ndbi": 0.39, "lst": 45 }
+        },
+        {
+          "year": 2013,
+          "note": "Thermal intensity and urban continuity strengthen together.",
+          "footprintKm": 22,
+          "metrics": { "vegetation": 12, "water": 3, "heat": 48, "urban": 49, "disturbance": 17 },
+          "indices": { "ndvi": 0.12, "ndwi": 0.01, "nbr": 0.15, "ndbi": 0.49, "lst": 48 }
+        },
+        {
+          "year": 2025,
+          "note": "Heat-sensitive planning becomes a major management use case for thermal Landsat products.",
+          "footprintKm": 25,
+          "metrics": { "vegetation": 11, "water": 3, "heat": 51, "urban": 58, "disturbance": 18 },
+          "indices": { "ndvi": 0.11, "ndwi": 0.01, "nbr": 0.13, "ndbi": 0.58, "lst": 51 }
+        }
+      ]
+    },
+    {
+      "id": "yellowstone",
+      "name": "Yellowstone Recovery",
+      "short": "Fire disturbance and landscape recovery through time",
+      "center": [ -110.5885, 44.427 ],
+      "zoom": 8,
+      "years": [
+        {
+          "year": 1988,
+          "note": "Major burn scars dominate the immediate post-fire signal.",
+          "footprintKm": 42,
+          "metrics": { "vegetation": 29, "water": 11, "heat": 26, "urban": 2, "disturbance": 72 },
+          "indices": { "ndvi": 0.24, "ndwi": 0.08, "nbr": -0.32, "ndbi": 0.02, "lst": 26 }
+        },
+        {
+          "year": 1995,
+          "note": "Recovery is visible, but disturbance signatures remain strong in SWIR-based interpretation.",
+          "footprintKm": 37,
+          "metrics": { "vegetation": 41, "water": 11, "heat": 24, "urban": 2, "disturbance": 53 },
+          "indices": { "ndvi": 0.37, "ndwi": 0.08, "nbr": -0.11, "ndbi": 0.02, "lst": 24 }
+        },
+        {
+          "year": 2010,
+          "note": "Regrowth reshapes the vegetation signal and reduces burn contrast.",
+          "footprintKm": 30,
+          "metrics": { "vegetation": 58, "water": 12, "heat": 22, "urban": 2, "disturbance": 31 },
+          "indices": { "ndvi": 0.52, "ndwi": 0.09, "nbr": 0.16, "ndbi": 0.02, "lst": 22 }
+        },
+        {
+          "year": 2024,
+          "note": "Recovery is substantial, though disturbance history remains legible in the archive.",
+          "footprintKm": 26,
+          "metrics": { "vegetation": 66, "water": 12, "heat": 21, "urban": 2, "disturbance": 22 },
+          "indices": { "ndvi": 0.61, "ndwi": 0.09, "nbr": 0.28, "ndbi": 0.02, "lst": 21 }
+        }
+      ]
+    }
+  ],
+  "options": {
+    "basemaps": [
+      { "id": "imagery", "label": "Imagery", "note": null },
+      { "id": "light", "label": "Light", "note": null },
+      { "id": "terrain", "label": "Terrain", "note": null }
+    ],
+    "satellites": [
+      { "id": "landsat", "label": "Landsat 8/9", "note": "Best balanced optical + thermal continuity" },
+      { "id": "sentinel2", "label": "Sentinel-2", "note": "Higher temporal optical complement" },
+      { "id": "hls", "label": "HLS", "note": "Harmonized dense-repeat optical context" },
+      { "id": "thermal", "label": "Thermal missions", "note": "Heat-focused context like Landsat + ECOSTRESS" }
+    ],
+    "viewModes": [
+      { "id": "natural", "label": "Natural", "note": null },
+      { "id": "vegetation", "label": "Vegetation", "note": null },
+      { "id": "water", "label": "Water", "note": null },
+      { "id": "burn", "label": "Burn", "note": null },
+      { "id": "urban", "label": "Urban", "note": null },
+      { "id": "thermal", "label": "Thermal", "note": null }
+    ]
+  },
+  "modeDetails": {
+    "natural": {
+      "title": "Visible context",
+      "copy": "Natural-color style interpretation is strongest for orientation, land-water context, clouds, and communicating broad landscape patterns to non-specialists.",
+      "indexTitle": "Contextual RGB reading",
+      "indexContext": "This mode is not a computed spectral index. It is your baseline visual interpretation mode for place context and change storytelling.",
+      "metric": "urban",
+      "color": "rgba(121, 168, 255, 0.28)",
+      "spectral": [
+        { "label": "Blue", "value": 46 },
+        { "label": "Green", "value": 58 },
+        { "label": "Red", "value": 52 },
+        { "label": "NIR", "value": 41 },
+        { "label": "SWIR", "value": 33 },
+        { "label": "Thermal", "value": 18 }
+      ]
+    },
+    "vegetation": {
+      "title": "Vegetation signal",
+      "copy": "Healthy vegetation typically absorbs red light and reflects strongly in the near infrared. That red-versus-NIR contrast is why NDVI works so well for crop vigor and ecosystem greenness.",
+      "indexTitle": "NDVI behavior",
+      "indexContext": "Higher NDVI usually means denser or healthier green vegetation. Values dropping through time can signal clearing, stress, drought, or urban expansion.",
+      "metric": "vegetation",
+      "color": "rgba(108, 229, 177, 0.3)",
+      "spectral": [
+        { "label": "Blue", "value": 18 },
+        { "label": "Green", "value": 42 },
+        { "label": "Red", "value": 14 },
+        { "label": "NIR", "value": 88 },
+        { "label": "SWIR", "value": 46 },
+        { "label": "Thermal", "value": 22 }
+      ]
+    },
+    "water": {
+      "title": "Water and moisture signal",
+      "copy": "Water is usually dark in NIR and SWIR relative to surrounding land, while green reflectance can remain comparatively stronger. That helps highlight open water and moisture patterns.",
+      "indexTitle": "NDWI behavior",
+      "indexContext": "Higher NDWI generally points toward stronger water or wetness signals, while falling values can indicate drying, shoreline retreat, or vegetation loss of moisture.",
+      "metric": "water",
+      "color": "rgba(114, 198, 255, 0.32)",
+      "spectral": [
+        { "label": "Blue", "value": 28 },
+        { "label": "Green", "value": 48 },
+        { "label": "Red", "value": 15 },
+        { "label": "NIR", "value": 8 },
+        { "label": "SWIR", "value": 5 },
+        { "label": "Thermal", "value": 16 }
+      ]
+    },
+    "burn": {
+      "title": "Burn severity and disturbance signal",
+      "copy": "Recently burned surfaces usually lose the strong NIR response of healthy vegetation and become more distinct in SWIR, which is why NBR is widely used for wildfire assessment.",
+      "indexTitle": "NBR behavior",
+      "indexContext": "Lower or negative NBR values often indicate recent burn or severe disturbance, while recovery through time tends to push the index back upward.",
+      "metric": "disturbance",
+      "color": "rgba(255, 143, 143, 0.3)",
+      "spectral": [
+        { "label": "Blue", "value": 12 },
+        { "label": "Green", "value": 17 },
+        { "label": "Red", "value": 28 },
+        { "label": "NIR", "value": 19 },
+        { "label": "SWIR", "value": 72 },
+        { "label": "Thermal", "value": 34 }
+      ]
+    },
+    "urban": {
+      "title": "Built-up surface signal",
+      "copy": "Urban materials and exposed soils often become more distinct in SWIR-oriented interpretation. NDBI helps emphasize built-up intensity relative to vegetation-rich surfaces.",
+      "indexTitle": "NDBI behavior",
+      "indexContext": "Higher NDBI often points toward stronger built-up signatures, especially where vegetation is sparse and impervious surfaces dominate.",
+      "metric": "urban",
+      "color": "rgba(255, 209, 102, 0.28)",
+      "spectral": [
+        { "label": "Blue", "value": 26 },
+        { "label": "Green", "value": 29 },
+        { "label": "Red", "value": 38 },
+        { "label": "NIR", "value": 32 },
+        { "label": "SWIR", "value": 66 },
+        { "label": "Thermal", "value": 43 }
+      ]
+    },
+    "thermal": {
+      "title": "Surface temperature signal",
+      "copy": "Thermal measurements show emitted energy rather than reflected visible light. They are especially valuable for urban heat, evapotranspiration, drought, and water-use interpretation.",
+      "indexTitle": "Land surface temperature behavior",
+      "indexContext": "Higher LST can indicate hotter built-up areas, dry soils, stressed vegetation, or post-disturbance surfaces depending on the landscape context.",
+      "metric": "heat",
+      "color": "rgba(255, 120, 102, 0.34)",
+      "spectral": [
+        { "label": "Blue", "value": 8 },
+        { "label": "Green", "value": 10 },
+        { "label": "Red", "value": 16 },
+        { "label": "NIR", "value": 21 },
+        { "label": "SWIR", "value": 39 },
+        { "label": "Thermal", "value": 92 }
+      ]
+    }
+  }
+}

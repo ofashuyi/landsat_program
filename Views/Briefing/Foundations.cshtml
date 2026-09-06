@@ -1,0 +1,80 @@
+@{
+    ViewData["Title"] = "Landsat Foundations | Briefing";
+    ViewData["Description"] = "A short explanation of the four ideas that make Landsat useful.";
+    ViewData["OgTitle"] = "Landsat Foundations";
+    ViewData["OgDescription"] = "Cadence, scale, spectral range, and modern analysis-ready products.";
+    ViewData["OgImage"] = "/img/landsat9.jpg";
+    ViewData["BodyClass"] = "page-briefing";
+    ViewData["BrandHref"] = "/briefing";
+    ViewData["BrandSubtitle"] = "Briefing chapters";
+    ViewData["NavLinks"] = new[]
+    {
+        new NavigationLink("Chapters", "/briefing"),
+        new NavigationLink("Overview", "/briefing/overview"),
+        new NavigationLink("Foundations", "/briefing/foundations"),
+        new NavigationLink("Fleet", "/briefing/missions"),
+        new NavigationLink("Applications", "/briefing/applications"),
+        new NavigationLink("Products", "/briefing/products"),
+        new NavigationLink("Studio", "/studio")
+    };
+}
+
+<main class="shell container-xxl px-3 px-lg-4">
+    <section id="foundations" class="page-intro">
+        <div class="section-heading row g-3 align-items-end">
+            <div class="col-lg-7">
+                <div class="eyebrow">Foundational Ideas</div>
+                <h1>Know the four ideas that make Landsat useful before diving deeper</h1>
+            </div>
+            <div class="col-lg-5">
+                <p class="body-copy">
+                    These are the recurring themes behind almost every Landsat workflow: cadence, scale, spectral range,
+                    and modern analysis-ready products.
+                </p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-xl-3">
+                <article class="innovation-card h-100">
+                    <h3>8-day operational cadence</h3>
+                    <p>Landsat 8 and 9 work as an offset pair, so a location can be revisited every 8 days.</p>
+                </article>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <article class="innovation-card h-100">
+                    <h3>30 m working scale</h3>
+                    <p>Fields, reservoirs, burn scars, neighborhoods, and forest blocks can all be studied meaningfully.</p>
+                </article>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <article class="innovation-card h-100">
+                    <h3>11 bands for interpretation</h3>
+                    <p>Visible, near-infrared, shortwave-infrared, and thermal bands reveal different land conditions.</p>
+                </article>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <article class="innovation-card h-100">
+                    <h3>Modern products first</h3>
+                    <p>Collection 2, ARD, and HLS are better starting points than a raw-download-first mindset.</p>
+                </article>
+            </div>
+        </div>
+        <div class="panel mt-4">
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-8">
+                    <div class="eyebrow">Interactive Track</div>
+                    <h3 class="mb-2">Use the labs when concepts click better with motion</h3>
+                    <p class="body-copy">Orbit motion, resolution intuition, and band-combination interpretation are now split into short studio pages.</p>
+                </div>
+                <div class="col-lg-4 d-flex flex-wrap gap-3 justify-content-lg-end">
+                    <a class="button button-primary" href="/studio/orbit-lab">Open orbit lab</a>
+                    <a class="button" href="/studio/resolution-lab">Open resolution lab</a>
+                </div>
+            </div>
+        </div>
+        <div class="page-nav">
+            <a class="button" href="/briefing/overview">Previous: overview</a>
+            <a class="button button-primary" href="/briefing/missions">Next: mission fleet</a>
+        </div>
+    </section>
+</main>

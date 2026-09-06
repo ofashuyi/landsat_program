@@ -1,0 +1,5 @@
+# Update the Sitemap host below to your production domain before deploying.
+User-agent: *
+Allow: /
+
+Sitemap: https://your-production-domain.example/sitemap.xml

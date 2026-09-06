@@ -1,0 +1,131 @@
+{
+  "orbitModes": [
+    {
+      "id": "single",
+      "label": "Single Landsat",
+      "title": "Single Landsat baseline",
+      "description": "One Landsat satellite flies in a near-polar, sun-synchronous orbit at about 705 km altitude, crossing the equator at roughly the same local morning time and revisiting the same place every 16 days.",
+      "caption": "A single Landsat mission provides systematic global land imaging with a 16-day revisit cycle.",
+      "facts": [
+        { "label": "Orbit", "value": "Near-polar, sun-synchronous" },
+        { "label": "Altitude", "value": "705 km" },
+        { "label": "Inclination", "value": "98.2 degrees" },
+        { "label": "Period", "value": "99 minutes" },
+        { "label": "Revisit", "value": "16 days" }
+      ],
+      "visible": [ "satellite-a" ]
+    },
+    {
+      "id": "pair",
+      "label": "Landsat 8 + 9",
+      "title": "Landsat 8 and 9 working as a pair",
+      "description": "Landsat 8 and Landsat 9 occupy complementary phasing so they image the same location eight days apart. That near-weekly cadence is especially important for water quality, crop condition, and tropical forest monitoring.",
+      "caption": "Two Landsat satellites, phased eight days apart, create an 8-day repeat over the same location.",
+      "facts": [
+        { "label": "Active pair", "value": "Landsat 8 + 9" },
+        { "label": "Daily scenes", "value": "> 700/day from Landsat 9" },
+        { "label": "Combined cadence", "value": "8 days" },
+        { "label": "Swath width", "value": "185 km" },
+        { "label": "Use case", "value": "Near-weekly land change" }
+      ],
+      "visible": [ "satellite-a", "satellite-b" ]
+    },
+    {
+      "id": "hls",
+      "label": "HLS Constellation",
+      "title": "HLS virtual constellation",
+      "description": "Harmonized Landsat and Sentinel-2 treats multiple compatible missions as one analysis-ready observing system. NASA reports a global median repeat frequency under 1.4 days in 2025 with Landsat 8/9 and Sentinel-2A/B/C.",
+      "caption": "Landsat plus Sentinel-2 dramatically increases repeat observations while preserving Landsat-like analysis workflows.",
+      "facts": [
+        { "label": "Partners", "value": "Landsat 8/9 + Sentinel-2A/B/C" },
+        { "label": "Global median repeat", "value": "< 1.4 days in 2025" },
+        { "label": "Typical latency", "value": "2 to 3 days" },
+        { "label": "Product type", "value": "Analysis-ready surface reflectance" },
+        { "label": "Strength", "value": "Fast change detection" }
+      ],
+      "visible": [ "satellite-a", "satellite-b", "satellite-c", "satellite-d", "satellite-e" ]
+    }
+  ],
+  "resolutionModes": [
+    {
+      "id": "spatial",
+      "label": "Spatial",
+      "title": "Spatial resolution",
+      "description": "Spatial resolution tells you how much ground each pixel covers. Landsat 9 offers 15 m panchromatic, 30 m visible-to-shortwave infrared, and 100 m thermal pixels, which is why it is so useful for field-to-region scale work.",
+      "facts": [
+        { "label": "Panchromatic", "value": "15 m" },
+        { "label": "VSWIR / SWIR", "value": "30 m" },
+        { "label": "Thermal", "value": "100 m" }
+      ],
+      "visualType": "spatial",
+      "pixelCount": 144,
+      "coarseEvery": 5,
+      "cards": [
+        { "title": "15 m", "text": "Sharper panchromatic detail for edges, roads, and urban structure." },
+        { "title": "30 m", "text": "The core Landsat working scale for vegetation, water, land cover, and change detection." },
+        { "title": "100 m thermal", "text": "Coarser heat measurements, still extremely useful for evapotranspiration and urban heat analysis." }
+      ]
+    },
+    {
+      "id": "spectral",
+      "label": "Spectral",
+      "title": "Spectral resolution",
+      "description": "Spectral resolution describes how many wavelength bands a sensor captures and where those bands sit in the electromagnetic spectrum. Landsat 9 carries 11 bands spanning coastal, visible, near-infrared, shortwave-infrared, panchromatic, cirrus, and thermal infrared.",
+      "facts": [
+        { "label": "Bands", "value": "11 total" },
+        { "label": "Optical", "value": "Coastal to SWIR" },
+        { "label": "Thermal", "value": "2 TIRS bands" }
+      ],
+      "visualType": "spectral",
+      "bands": [
+        { "label": "Coastal / Aerosol", "className": "band-coastal" },
+        { "label": "Blue + Green + Red", "className": "band-visible" },
+        { "label": "Near Infrared", "className": "band-nir" },
+        { "label": "SWIR 1 + SWIR 2", "className": "band-swir" },
+        { "label": "Panchromatic", "className": "band-pan" },
+        { "label": "Cirrus", "className": "band-cirrus" },
+        { "label": "Thermal Infrared 1 + 2", "className": "band-thermal" }
+      ],
+      "cards": [
+        { "title": "Vegetation and moisture", "text": "NIR and SWIR support plant condition, burn severity, and surface moisture analysis." },
+        { "title": "Water and coastlines", "text": "Coastal and visible bands help with water quality, turbidity, and shoreline interpretation." },
+        { "title": "Heat and energy balance", "text": "Thermal bands make Landsat uniquely useful for water use, drought, and urban heat studies." }
+      ]
+    },
+    {
+      "id": "temporal",
+      "label": "Temporal",
+      "title": "Temporal resolution",
+      "description": "Temporal resolution is about how often you can observe the same place. One Landsat mission repeats every 16 days, Landsat 8 and 9 together achieve 8 days, and HLS compresses the wait dramatically by harmonizing Landsat with Sentinel-2.",
+      "facts": [
+        { "label": "Single Landsat", "value": "16 days" },
+        { "label": "Landsat 8 + 9", "value": "8 days" },
+        { "label": "HLS", "value": "2 to 3 days, < 1.4 day median globally in 2025" }
+      ],
+      "visualType": "temporal",
+      "timelines": [
+        { "title": "Single Landsat", "length": 16, "activeIndexes": [ 0 ] },
+        { "title": "Landsat pair", "length": 8, "activeIndexes": [ 0, 4 ] },
+        { "title": "HLS constellation", "length": 10, "activeIndexes": [ 0, 2, 4, 6, 8 ] }
+      ]
+    },
+    {
+      "id": "radiometric",
+      "label": "Radiometric",
+      "title": "Radiometric resolution",
+      "description": "Radiometric resolution tells you how finely a sensor can distinguish differences in reflected or emitted energy. More bits means more measurable shades between dark and bright surfaces. Landsat 7 used 8-bit data, while Landsat 9 OLI collects 14-bit data.",
+      "facts": [
+        { "label": "Landsat 7", "value": "8-bit" },
+        { "label": "Landsat 8 OLI", "value": "12-bit" },
+        { "label": "Landsat 9 OLI", "value": "14-bit" }
+      ],
+      "visualType": "radiometric",
+      "tones": [
+        { "title": "8-bit", "label": "256 tonal steps", "className": "tone-8" },
+        { "title": "12-bit", "label": "4,096 tonal steps", "className": "tone-12" },
+        { "title": "14-bit", "label": "16,384 tonal steps", "className": "tone-14" }
+      ],
+      "story": "Higher radiometric precision helps scientists detect subtler differences in dark vegetation, bright soils, snow, and water while preserving strong time-series comparability."
+    }
+  ]
+}

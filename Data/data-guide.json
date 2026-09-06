@@ -1,0 +1,180 @@
+{
+  "guides": {
+    "task": [
+      {
+        "id": "time-series",
+        "title": "Multi-date change analysis",
+        "text": "Track land change through time with a science-ready baseline."
+      },
+      {
+        "id": "heat-water",
+        "title": "Heat, evapotranspiration, or drought",
+        "text": "Use Landsat's thermal strengths for water and energy balance questions."
+      },
+      {
+        "id": "fast-monitoring",
+        "title": "Fast-repeat monitoring",
+        "text": "Watch vegetation, flooding, or disturbance with denser revisit timing."
+      },
+      {
+        "id": "custom-prep",
+        "title": "Custom preprocessing research",
+        "text": "Start closer to the calibrated source when you need full control."
+      }
+    ],
+    "scale": [
+      {
+        "id": "single-scene",
+        "title": "One scene or small area",
+        "text": "A smaller study area with manual or semi-manual analysis."
+      },
+      {
+        "id": "regional",
+        "title": "Regional / multi-scene",
+        "text": "A larger workflow that benefits from consistent tiling and automation."
+      }
+    ],
+    "priority": [
+      {
+        "id": "simplicity",
+        "title": "Fastest path to analysis",
+        "text": "Prefer products that are already corrected and analysis-ready."
+      },
+      {
+        "id": "control",
+        "title": "Maximum preprocessing control",
+        "text": "Prefer flexible source data even if more setup is required."
+      }
+    ]
+  },
+  "recommendations": {
+    "time-series|single-scene|simplicity": {
+      "product": "Collection 2 Surface Reflectance",
+      "confidence": "Strong default",
+      "why": "You want science-ready optical data for multi-date comparison without doing your own atmospheric correction.",
+      "bestFor": "Vegetation indices, land-cover change, flood comparison, disturbance mapping",
+      "tradeoff": "You gain speed and consistency, but not the rawest level of preprocessing control.",
+      "nextStep": "Start with Surface Reflectance and QA bands, then add Surface Temperature only if heat matters."
+    },
+    "time-series|regional|simplicity": {
+      "product": "U.S. ARD",
+      "confidence": "Best operational fit",
+      "why": "Regional time-series work benefits from tiled, analysis-ready products built for repeat processing and pixel alignment.",
+      "bestFor": "Automated monitoring, dashboards, regional land-change pipelines",
+      "tradeoff": "Best for tiled operational workflows rather than casual one-off scene browsing.",
+      "nextStep": "Use ARD if your geography is covered; otherwise use Collection 2 Surface Reflectance with a similar pipeline."
+    },
+    "time-series|single-scene|control": {
+      "product": "Collection 2 Level-1",
+      "confidence": "Research-oriented",
+      "why": "If you need to choose or test your own preprocessing chain, Level-1 keeps you closest to the calibrated source.",
+      "bestFor": "Method development, custom atmospheric correction, specialized retrieval experiments",
+      "tradeoff": "More flexibility means more work before analysis can begin.",
+      "nextStep": "Begin with Level-1 only if you know why the standard Level-2 products are not enough."
+    },
+    "time-series|regional|control": {
+      "product": "Collection 2 Level-1 plus custom pipeline",
+      "confidence": "Advanced workflow",
+      "why": "Large custom studies sometimes require a controlled processing chain across scenes and years.",
+      "bestFor": "Algorithm research, cross-sensor harmonization experiments, custom corrections",
+      "tradeoff": "Operational overhead is much higher than ARD or Surface Reflectance.",
+      "nextStep": "Only choose this path if methodological control is a core project requirement."
+    },
+    "heat-water|single-scene|simplicity": {
+      "product": "Collection 2 Surface Temperature",
+      "confidence": "Direct match",
+      "why": "Your main question is thermal, so the science product designed for land surface temperature is the most useful start.",
+      "bestFor": "Urban heat, drought, evapotranspiration support, irrigation and water-stress interpretation",
+      "tradeoff": "Thermal interpretation still benefits from combining with optical products.",
+      "nextStep": "Pair Surface Temperature with Surface Reflectance for the strongest environmental interpretation."
+    },
+    "heat-water|regional|simplicity": {
+      "product": "Collection 2 Surface Temperature plus ARD / Surface Reflectance",
+      "confidence": "Best combined workflow",
+      "why": "Regional heat and water studies usually need both thermal response and optical land-surface context.",
+      "bestFor": "Watershed heat mapping, agricultural water-use studies, urban heat-risk assessment",
+      "tradeoff": "You are now managing at least two linked product streams.",
+      "nextStep": "Use Surface Temperature for heat and Surface Reflectance or ARD for land condition and masking."
+    },
+    "heat-water|single-scene|control": {
+      "product": "Collection 2 Level-1 with thermal-focused custom workflow",
+      "confidence": "Specialized",
+      "why": "Choose this only if you need to test retrieval methods beyond the standard surface temperature product.",
+      "bestFor": "Algorithm development and advanced research",
+      "tradeoff": "Most users do not need this complexity.",
+      "nextStep": "Compare your custom result against the standard Surface Temperature product."
+    },
+    "heat-water|regional|control": {
+      "product": "Custom Level-1 thermal pipeline",
+      "confidence": "Advanced research path",
+      "why": "This is for teams building bespoke temperature or energy-balance workflows at scale.",
+      "bestFor": "Research programs with well-defined custom models",
+      "tradeoff": "Highest complexity and validation burden.",
+      "nextStep": "Use only with a clear calibration and validation plan."
+    },
+    "fast-monitoring|single-scene|simplicity": {
+      "product": "HLS Version 2.0",
+      "confidence": "Best temporal choice",
+      "why": "You need more frequent observations than Landsat alone can provide, and HLS is built exactly for that need.",
+      "bestFor": "Crop condition, flooding, rapid disturbance, vegetation dynamics",
+      "tradeoff": "You gain temporal density but move into a harmonized cross-mission product space rather than Landsat alone.",
+      "nextStep": "Use HLS first, then pull original Landsat scenes if you need mission-specific follow-up."
+    },
+    "fast-monitoring|regional|simplicity": {
+      "product": "HLS Version 2.0",
+      "confidence": "Clear recommendation",
+      "why": "High-temporal monitoring over large areas is where HLS shines.",
+      "bestFor": "Regional crop systems, recurring floodplains, landscape disturbance alerts",
+      "tradeoff": "Thermal capability is not the center of this workflow.",
+      "nextStep": "Use HLS for the rapid optical timeline and add Landsat thermal products if heat matters."
+    },
+    "fast-monitoring|single-scene|control": {
+      "product": "HLS plus original Landsat / Sentinel follow-up",
+      "confidence": "Hybrid workflow",
+      "why": "You want fast revisit but also the option to inspect source missions more directly.",
+      "bestFor": "Targeted event analysis with flexible follow-up",
+      "tradeoff": "You are balancing speed with deeper source-level interpretation.",
+      "nextStep": "Screen with HLS, then pull the source scene when you need custom analysis."
+    },
+    "fast-monitoring|regional|control": {
+      "product": "HLS with custom post-processing",
+      "confidence": "Operational-research hybrid",
+      "why": "This keeps the dense revisit advantage while preserving room for custom downstream modeling.",
+      "bestFor": "Regional monitoring systems and advanced classification pipelines",
+      "tradeoff": "More moving parts than using HLS out of the box.",
+      "nextStep": "Use HLS as the observation backbone and customize the analysis layer, not the ingestion layer first."
+    },
+    "custom-prep|single-scene|simplicity": {
+      "product": "Collection 2 Level-1",
+      "confidence": "Closest source path",
+      "why": "If preprocessing itself is the point, Level-1 is the natural entry point.",
+      "bestFor": "Teaching, experimentation, and custom correction demos",
+      "tradeoff": "Not the fastest route to environmental interpretation.",
+      "nextStep": "Use Level-1 only when the preprocessing decisions are part of the lesson or method."
+    },
+    "custom-prep|regional|simplicity": {
+      "product": "Collection 2 Level-1",
+      "confidence": "Control-first choice",
+      "why": "Even if you want a simpler workflow, custom preprocessing at scale starts from Level-1.",
+      "bestFor": "Controlled pipelines across many scenes",
+      "tradeoff": "High setup cost compared with ARD or Level-2 products.",
+      "nextStep": "Prototype on a small subset before scaling out."
+    },
+    "custom-prep|single-scene|control": {
+      "product": "Collection 2 Level-1",
+      "confidence": "Exact match",
+      "why": "This combination explicitly asks for maximum preprocessing control on a manageable scale.",
+      "bestFor": "Sensor-method training, custom atmospheric correction, experimental retrievals",
+      "tradeoff": "You must do more work before you can answer the environmental question.",
+      "nextStep": "Document your preprocessing assumptions carefully so results stay reproducible."
+    },
+    "custom-prep|regional|control": {
+      "product": "Collection 2 Level-1 plus custom scaled pipeline",
+      "confidence": "Expert path",
+      "why": "This is the most flexible and most demanding option in the guide.",
+      "bestFor": "Serious method development and large custom research programs",
+      "tradeoff": "Highest burden for compute, QA, and reproducibility.",
+      "nextStep": "Treat this as an engineering project, not just a data download step."
+    }
+  }
+}
