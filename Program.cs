@@ -1,4 +1,6 @@
+using System.Threading.RateLimiting;
 using LandsatProgram.Services;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +24,35 @@ builder.Services.AddHttpClient("landsat-stac", client =>
 {
     client.BaseAddress = new Uri(landsatStacBaseUrl);
     client.Timeout = TimeSpan.FromSeconds(landsatStacTimeoutSeconds);
+});
+
+var landsatStacPermitLimit = builder.Configuration.GetValue<int?>("LandsatStac:RateLimit:PermitLimit") ?? 30;
+var landsatStacWindowSeconds = builder.Configuration.GetValue<double?>("LandsatStac:RateLimit:WindowSeconds") ?? 60;
+
+builder.Services.AddRateLimiter(options =>
+{
+    options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+    // UseStatusCodePagesWithReExecute re-executes empty-bodied 4xx/5xx responses against
+    // /error/{code} using the *same* HTTP method as the original request. Without a body
+    // here, a rejected POST would be replayed as POST /error/429, which ErrorController
+    // (GET-only) then rejects with its own 405 - masking the real 429 entirely. Writing a
+    // body avoids that re-execution and gives API clients a useful response besides.
+    options.OnRejected = async (context, cancellationToken) =>
+    {
+        context.HttpContext.Response.ContentType = "application/json";
+        await context.HttpContext.Response.WriteAsync(
+            """{"error":"rate_limited","message":"Too many Landsat scene search requests. Please wait a moment and try again."}""",
+            cancellationToken);
+    };
+    options.AddPolicy(RateLimitPolicies.LandsatStacSearch, context =>
+        RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey: context.Connection.RemoteIpAddress?.ToString() ?? "unknown",
+            factory: _ => new FixedWindowRateLimiterOptions
+            {
+                PermitLimit = landsatStacPermitLimit,
+                Window = TimeSpan.FromSeconds(landsatStacWindowSeconds),
+                QueueLimit = 0
+            }));
 });
 
 var app = builder.Build();
@@ -65,6 +96,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseRateLimiter();
+
 app.MapGet("/", () => Results.Redirect("/briefing", permanent: false));
 app.MapGet("/index.html", () => Results.Redirect("/briefing", permanent: false));
 app.MapGet("/studio.html", () => Results.Redirect("/studio", permanent: false));
@@ -92,6 +125,18 @@ app.MapControllerRoute(
     pattern: "{controller=Briefing}/{action=Program}/{id?}");
 
 app.Run();
+
+/// <summary>Marker type that lets WebApplicationFactory&lt;Program&gt; reference this top-level-statement app in tests.</summary>
+public partial class Program { }
+
+/// <summary>
+/// Shared rate limiter policy names, referenced by both the pipeline configuration above
+/// and the [EnableRateLimiting] attribute on the controllers that opt into a policy.
+/// </summary>
+internal static class RateLimitPolicies
+{
+    public const string LandsatStacSearch = "landsat-stac-search";
+}
 
 /// <summary>
 /// Delegates the first path segment (e.g. "css/app.css") to a dedicated <see cref="PhysicalFileProvider"/>

@@ -1,11 +1,13 @@
 using System.Text;
 using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace LandsatProgram.Controllers.Api;
 
 [ApiController]
 [Route("api/landsat-scenes")]
+[EnableRateLimiting(RateLimitPolicies.LandsatStacSearch)]
 public sealed class LandsatScenesController : ControllerBase
 {
     private readonly IHttpClientFactory _httpClientFactory;
