@@ -190,7 +190,8 @@
     "basemaps": [
       { "id": "imagery", "label": "Imagery", "note": null },
       { "id": "light", "label": "Light", "note": null },
-      { "id": "terrain", "label": "Terrain", "note": null }
+      { "id": "terrain", "label": "Terrain", "note": null },
+      { "id": "streets", "label": "Streets", "note": "Roads and place labels from OpenStreetMap" }
     ],
     "satellites": [
       { "id": "landsat", "label": "Landsat 8/9", "note": "Best balanced optical + thermal continuity" },

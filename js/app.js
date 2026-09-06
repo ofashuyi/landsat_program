@@ -1311,6 +1311,11 @@ function sceneUsesRequesterPaysAssets(scene, aliases) {
     return Boolean(asset?.href && /^s3:\/\//i.test(asset.href) && !getPreferredAssetHref(asset));
 }
 
+function sceneHasRenderableAssets(scene) {
+    const assets = getSceneBandAssets(scene);
+    return Boolean(assets.red && assets.green && assets.blue);
+}
+
 function getSceneBandAssets(scene) {
     return {
         blue: getSceneAssetHref(scene, ["blue", "sr_b2", "b2"]),
@@ -1906,13 +1911,14 @@ function updateStudioSceneStyles() {
     }
     studioSceneSource.getFeatures().forEach((feature) => {
         const selected = feature.get("sceneId") === studioState.selectedSceneId;
+        // Stroke-only on purpose: up to 6 scene footprints can be shown at once and
+        // often overlap the same hotspot, so any fill (even a subtle one) stacks
+        // additively across overlapping scenes and washes out the basemap/raster
+        // underneath exactly where it matters most.
         feature.setStyle(new ol.style.Style({
             stroke: new ol.style.Stroke({
                 color: selected ? "rgba(255, 209, 102, 0.95)" : "rgba(121, 168, 255, 0.62)",
                 width: selected ? 3 : 2
-            }),
-            fill: new ol.style.Fill({
-                color: selected ? "rgba(255, 209, 102, 0.12)" : "rgba(121, 168, 255, 0.08)"
             })
         }));
     });
@@ -2038,7 +2044,13 @@ async function loadStudioScenes() {
 
         studioState.loadingScenes = false;
         studioState.scenes = scenes;
-        studioState.selectedSceneId = scenes[0]?.id || null;
+        // Prefer the first scene that actually has public (non-requester-pays) optical
+        // bands, so the default view isn't a dead end just because the lowest-cloud
+        // result happens to be an S3-requester-pays-only scene. Falls back to the
+        // lowest-cloud scene if none of the results are renderable.
+        studioState.selectedSceneId = scenes.find((scene) => sceneHasRenderableAssets(scene))?.id
+            || scenes[0]?.id
+            || null;
         studioState.sceneLoadError = false;
 
         if (studioSceneSource) {
@@ -2098,6 +2110,14 @@ function getStudioPointStyle(feature) {
     });
 }
 
+function withOpaqueAlpha(rgbaColor, alpha) {
+    const match = /rgba?\(([^,]+),([^,]+),([^,]+)/.exec(rgbaColor);
+    if (!match) {
+        return rgbaColor;
+    }
+    return `rgba(${match[1].trim()}, ${match[2].trim()}, ${match[3].trim()}, ${alpha})`;
+}
+
 function updateStudioMapVisualization() {
     if (!studioActiveFeature) {
         return;
@@ -2109,9 +2129,11 @@ function updateStudioMapVisualization() {
     const center = ol.proj.fromLonLat(hotspot.center);
 
     studioActiveFeature.setGeometry(new ol.geom.Circle(center, yearRecord.footprintKm * 1000));
+    // Stroke-only, using the mode color for the ring rather than a fill: a filled
+    // circle this large sits directly over the area the student is trying to look
+    // at, and even a light tint washes out the real imagery/raster underneath.
     studioActiveFeature.setStyle(new ol.style.Style({
-        fill: new ol.style.Fill({ color: mode.color }),
-        stroke: new ol.style.Stroke({ color: "rgba(255, 255, 255, 0.62)", width: 2 })
+        stroke: new ol.style.Stroke({ color: withOpaqueAlpha(mode.color, 0.9), width: 3 })
     }));
 
     Object.values(studioHotspotFeatures).forEach((feature) => {
@@ -2255,9 +2277,9 @@ async function initializeStudioMap() {
         }),
         light: new ol.layer.Tile({
             source: new ol.source.XYZ({
-                url: "https://{a-c}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+                url: "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}",
                 crossOrigin: "anonymous",
-                attributions: "OpenStreetMap, CARTO"
+                attributions: "Esri"
             }),
             visible: false
         }),
@@ -2266,6 +2288,14 @@ async function initializeStudioMap() {
                 url: "https://tile.opentopomap.org/{z}/{x}/{y}.png",
                 crossOrigin: "anonymous",
                 attributions: "OpenTopoMap"
+            }),
+            visible: false
+        }),
+        streets: new ol.layer.Tile({
+            source: new ol.source.XYZ({
+                url: "https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                crossOrigin: "anonymous",
+                attributions: "© OpenStreetMap contributors"
             }),
             visible: false
         })
@@ -2302,7 +2332,7 @@ async function initializeStudioMap() {
 
     studioMap = new ol.Map({
         target: studioMapTarget,
-        layers: [studioBaseLayers.imagery, studioBaseLayers.light, studioBaseLayers.terrain, studioSceneLayer, studioActiveLayer, studioHotspotLayer],
+        layers: [studioBaseLayers.imagery, studioBaseLayers.light, studioBaseLayers.terrain, studioBaseLayers.streets, studioSceneLayer, studioActiveLayer, studioHotspotLayer],
         view: new ol.View({
             center: ol.proj.fromLonLat([8, 15]),
             zoom: 2

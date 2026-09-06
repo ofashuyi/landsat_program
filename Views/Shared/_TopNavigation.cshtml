@@ -3,7 +3,19 @@
 <header class="topbar navbar navbar-expand-lg navbar-dark">
     <div class="topbar-inner container-xxl px-3 px-lg-4">
         <a class="brand navbar-brand me-0" href="@Model.BrandHref">
-            <img src="/img/logo.png" alt="Landsat logo">
+            <span class="brand-mark" role="img" aria-label="Landsat logo">
+                <svg viewBox="0 0 100 100" aria-hidden="true">
+                    <circle class="brand-mark-orbit" cx="50" cy="50" r="44"></circle>
+                    <circle class="brand-mark-earth" cx="50" cy="50" r="28"></circle>
+                    <path class="brand-mark-land" d="M30 36c5-7 14-9 20-4 6 4 4 12-2 14-8 3-16-2-18-10z"></path>
+                    <path class="brand-mark-land" d="M54 60c7-2 15 1 17 8 2 6-4 10-11 9-8-1-13-9-6-17z"></path>
+                    <g class="brand-mark-orbit-group">
+                        <rect class="brand-mark-satellite" x="47" y="2" width="6" height="6" rx="1.5"></rect>
+                        <rect class="brand-mark-panel" x="39" y="3.5" width="7" height="3" rx="1"></rect>
+                        <rect class="brand-mark-panel" x="54" y="3.5" width="7" height="3" rx="1"></rect>
+                    </g>
+                </svg>
+            </span>
             <div class="brand-copy">
                 <strong>Landsat Program Explorer</strong>
                 <span>@Model.BrandSubtitle</span>

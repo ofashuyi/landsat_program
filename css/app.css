@@ -94,12 +94,59 @@ a {
     text-decoration: none;
 }
 
-.brand img {
+.brand-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 42px;
     height: 42px;
     border-radius: 12px;
-    object-fit: cover;
+    background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.15);
+    flex-shrink: 0;
+}
+
+.brand-mark svg {
+    width: 100%;
+    height: 100%;
+}
+
+.brand-mark-orbit {
+    fill: none;
+    stroke: rgba(237, 244, 255, 0.3);
+    stroke-width: 1.2;
+    stroke-dasharray: 2.5 4;
+}
+
+.brand-mark-earth {
+    fill: var(--accent-2);
+}
+
+.brand-mark-land {
+    fill: var(--accent);
+}
+
+.brand-mark-satellite,
+.brand-mark-panel {
+    fill: var(--text);
+}
+
+.brand-mark-orbit-group {
+    transform-box: view-box;
+    transform-origin: 50px 50px;
+    animation: brand-orbit-spin 6s linear infinite;
+}
+
+@keyframes brand-orbit-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .brand-mark-orbit-group {
+        animation: none;
+    }
 }
 
 .brand-copy strong,
@@ -828,7 +875,8 @@ section {
 .tone-bar {
     border-radius: 999px;
     padding: 10px 14px;
-    color: #06101c;
+    color: var(--text);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85), 0 0 8px rgba(0, 0, 0, 0.55);
     font-weight: 700;
     font-size: 0.85rem;
 }
@@ -911,6 +959,7 @@ section {
     border-radius: var(--radius-lg);
     border: 1px solid rgba(255, 255, 255, 0.1);
     background: rgba(255, 255, 255, 0.04);
+    color: var(--text);
     cursor: pointer;
     transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
@@ -928,6 +977,7 @@ section {
 .workflow-option strong {
     display: block;
     margin-bottom: 6px;
+    color: var(--accent);
 }
 
 .band-preset p,
@@ -1092,6 +1142,19 @@ section {
     border: 1px solid rgba(255, 255, 255, 0.1);
     overflow: hidden;
     background: rgba(255, 255, 255, 0.03);
+}
+
+@media (min-width: 1200px) {
+    .studio-map-panel {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    #studio-map {
+        flex: 1 1 auto;
+        height: auto;
+    }
 }
 
 .ol-viewport {
@@ -1259,6 +1322,7 @@ section {
 
 .studio-scene-button {
     text-align: left;
+    color: var(--text);
     cursor: pointer;
     transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
@@ -1274,6 +1338,7 @@ section {
 .studio-scene-card strong {
     display: block;
     margin-bottom: 6px;
+    color: var(--accent);
 }
 
 .studio-scene-button p,
