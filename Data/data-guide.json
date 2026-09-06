@@ -55,6 +55,8 @@
       "bestFor": "Vegetation indices, land-cover change, flood comparison, disturbance mapping",
       "tradeoff": "You gain speed and consistency, but not the rawest level of preprocessing control.",
       "nextStep": "Start with Surface Reflectance and QA bands, then add Surface Temperature only if heat matters."
+      ,
+      "teachingTip": "Have students calculate NDVI only after identifying clouds, water, and season. The index is a tool, not the whole interpretation."
     },
     "time-series|regional|simplicity": {
       "product": "U.S. ARD",
@@ -63,6 +65,8 @@
       "bestFor": "Automated monitoring, dashboards, regional land-change pipelines",
       "tradeoff": "Best for tiled operational workflows rather than casual one-off scene browsing.",
       "nextStep": "Use ARD if your geography is covered; otherwise use Collection 2 Surface Reflectance with a similar pipeline."
+      ,
+      "teachingTip": "Emphasize pixel alignment and repeat processing: ARD is about reducing setup friction for time series."
     },
     "time-series|single-scene|control": {
       "product": "Collection 2 Level-1",
@@ -71,6 +75,8 @@
       "bestFor": "Method development, custom atmospheric correction, specialized retrieval experiments",
       "tradeoff": "More flexibility means more work before analysis can begin.",
       "nextStep": "Begin with Level-1 only if you know why the standard Level-2 products are not enough."
+      ,
+      "teachingTip": "Use this path to teach preprocessing choices, then compare results with Level-2 products."
     },
     "time-series|regional|control": {
       "product": "Collection 2 Level-1 plus custom pipeline",
@@ -79,6 +85,8 @@
       "bestFor": "Algorithm research, cross-sensor harmonization experiments, custom corrections",
       "tradeoff": "Operational overhead is much higher than ARD or Surface Reflectance.",
       "nextStep": "Only choose this path if methodological control is a core project requirement."
+      ,
+      "teachingTip": "Ask learners to write a reproducibility checklist before scaling custom preprocessing."
     },
     "heat-water|single-scene|simplicity": {
       "product": "Collection 2 Surface Temperature",
@@ -87,6 +95,8 @@
       "bestFor": "Urban heat, drought, evapotranspiration support, irrigation and water-stress interpretation",
       "tradeoff": "Thermal interpretation still benefits from combining with optical products.",
       "nextStep": "Pair Surface Temperature with Surface Reflectance for the strongest environmental interpretation."
+      ,
+      "teachingTip": "Teach that thermal pixels need context: hot bare soil, roofs, dry vegetation, and recent burns can all produce high-temperature signals."
     },
     "heat-water|regional|simplicity": {
       "product": "Collection 2 Surface Temperature plus ARD / Surface Reflectance",
@@ -95,6 +105,8 @@
       "bestFor": "Watershed heat mapping, agricultural water-use studies, urban heat-risk assessment",
       "tradeoff": "You are now managing at least two linked product streams.",
       "nextStep": "Use Surface Temperature for heat and Surface Reflectance or ARD for land condition and masking."
+      ,
+      "teachingTip": "Compare similar seasons and acquisition times so the lesson is about land condition rather than weather noise."
     },
     "heat-water|single-scene|control": {
       "product": "Collection 2 Level-1 with thermal-focused custom workflow",
@@ -103,6 +115,8 @@
       "bestFor": "Algorithm development and advanced research",
       "tradeoff": "Most users do not need this complexity.",
       "nextStep": "Compare your custom result against the standard Surface Temperature product."
+      ,
+      "teachingTip": "Make validation part of the lesson: a custom method should explain why it is better for the question."
     },
     "heat-water|regional|control": {
       "product": "Custom Level-1 thermal pipeline",
@@ -111,6 +125,8 @@
       "bestFor": "Research programs with well-defined custom models",
       "tradeoff": "Highest complexity and validation burden.",
       "nextStep": "Use only with a clear calibration and validation plan."
+      ,
+      "teachingTip": "Have students identify auxiliary data needs before they touch code."
     },
     "fast-monitoring|single-scene|simplicity": {
       "product": "HLS Version 2.0",
@@ -119,6 +135,8 @@
       "bestFor": "Crop condition, flooding, rapid disturbance, vegetation dynamics",
       "tradeoff": "You gain temporal density but move into a harmonized cross-mission product space rather than Landsat alone.",
       "nextStep": "Use HLS first, then pull original Landsat scenes if you need mission-specific follow-up."
+      ,
+      "teachingTip": "Use HLS to show how harmonization helps when clouds or rapid change make a 16-day cadence too sparse."
     },
     "fast-monitoring|regional|simplicity": {
       "product": "HLS Version 2.0",
@@ -127,6 +145,8 @@
       "bestFor": "Regional crop systems, recurring floodplains, landscape disturbance alerts",
       "tradeoff": "Thermal capability is not the center of this workflow.",
       "nextStep": "Use HLS for the rapid optical timeline and add Landsat thermal products if heat matters."
+      ,
+      "teachingTip": "Point out the tradeoff: denser optical revisit does not replace Landsat's thermal value."
     },
     "fast-monitoring|single-scene|control": {
       "product": "HLS plus original Landsat / Sentinel follow-up",
@@ -135,6 +155,8 @@
       "bestFor": "Targeted event analysis with flexible follow-up",
       "tradeoff": "You are balancing speed with deeper source-level interpretation.",
       "nextStep": "Screen with HLS, then pull the source scene when you need custom analysis."
+      ,
+      "teachingTip": "This is a strong workflow for event triage: broad search first, source inspection second."
     },
     "fast-monitoring|regional|control": {
       "product": "HLS with custom post-processing",
@@ -143,6 +165,8 @@
       "bestFor": "Regional monitoring systems and advanced classification pipelines",
       "tradeoff": "More moving parts than using HLS out of the box.",
       "nextStep": "Use HLS as the observation backbone and customize the analysis layer, not the ingestion layer first."
+      ,
+      "teachingTip": "Teach students to customize where it adds insight, not where official products already solved the hard part."
     },
     "custom-prep|single-scene|simplicity": {
       "product": "Collection 2 Level-1",
@@ -151,6 +175,8 @@
       "bestFor": "Teaching, experimentation, and custom correction demos",
       "tradeoff": "Not the fastest route to environmental interpretation.",
       "nextStep": "Use Level-1 only when the preprocessing decisions are part of the lesson or method."
+      ,
+      "teachingTip": "Good for demonstrating atmospheric correction, calibration, and metadata, but not for most beginner environmental questions."
     },
     "custom-prep|regional|simplicity": {
       "product": "Collection 2 Level-1",
@@ -159,6 +185,8 @@
       "bestFor": "Controlled pipelines across many scenes",
       "tradeoff": "High setup cost compared with ARD or Level-2 products.",
       "nextStep": "Prototype on a small subset before scaling out."
+      ,
+      "teachingTip": "A small prototype should include cloudy, clear, bright, dark, water, and vegetation examples."
     },
     "custom-prep|single-scene|control": {
       "product": "Collection 2 Level-1",
@@ -167,6 +195,8 @@
       "bestFor": "Sensor-method training, custom atmospheric correction, experimental retrievals",
       "tradeoff": "You must do more work before you can answer the environmental question.",
       "nextStep": "Document your preprocessing assumptions carefully so results stay reproducible."
+      ,
+      "teachingTip": "Ask students to record every correction, mask, scale factor, and excluded pixel rule."
     },
     "custom-prep|regional|control": {
       "product": "Collection 2 Level-1 plus custom scaled pipeline",
@@ -175,6 +205,8 @@
       "bestFor": "Serious method development and large custom research programs",
       "tradeoff": "Highest burden for compute, QA, and reproducibility.",
       "nextStep": "Treat this as an engineering project, not just a data download step."
+      ,
+      "teachingTip": "A serious custom pipeline needs provenance, QA, validation, and computing plans."
     }
   }
 }

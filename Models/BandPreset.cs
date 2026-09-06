@@ -7,4 +7,6 @@ public sealed record BandPreset(
     string Why,
     string GoodFor,
     string Caution,
-    BandPresetColors Colors);
+    BandPresetColors Colors,
+    string? Lesson = null,
+    string? Practice = null);

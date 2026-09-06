@@ -175,6 +175,23 @@ a {
     max-width: 11ch;
 }
 
+.hero.lab-media {
+    min-height: 220px;
+    border: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow);
+    margin-bottom: 10px;
+}
+
+.hero.lab-media .hero-video {
+    filter: saturate(1) contrast(1.02) brightness(0.88);
+}
+
+.hero.lab-media .hero-video-toggle {
+    right: 16px;
+}
+
 .hero-video {
     position: absolute;
     inset: 0;
@@ -428,7 +445,11 @@ section {
 .use-card,
 .resource-card,
 .source-card,
-.compare-card {
+.compare-card,
+.lesson-card,
+.case-card,
+.recipe-card,
+.media-card {
     padding: 20px;
     background: rgba(255, 255, 255, 0.032);
     border: 1px solid var(--line);
@@ -451,9 +472,21 @@ section {
 .innovation-card p,
 .use-card p,
 .resource-card p,
-.source-card p {
+.source-card p,
+.case-card p,
+.media-card p {
     line-height: 1.65;
     color: #d3e1f4;
+}
+
+.case-card img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    margin-bottom: 16px;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.04);
 }
 
 .panel {
@@ -981,6 +1014,25 @@ section {
     gap: 10px;
 }
 
+.studio-band-picker-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.studio-band-picker-row label {
+    display: grid;
+    gap: 6px;
+    color: var(--muted);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+}
+
+.studio-band-picker-row select {
+    text-transform: none;
+    font-size: 0.92rem;
+}
+
 .studio-chip,
 .studio-hotspot-button {
     min-height: 40px;
@@ -1451,6 +1503,105 @@ section {
     padding: 18px;
     border-radius: 18px;
     background: linear-gradient(135deg, rgba(121, 168, 255, 0.08), rgba(108, 229, 177, 0.08));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.lesson-band,
+.case-study-grid,
+.recipe-grid,
+.media-grid,
+.vocab-grid {
+    display: grid;
+    gap: 14px;
+}
+
+.lesson-band {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.case-study-grid,
+.media-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.recipe-grid,
+.vocab-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.lesson-card h3,
+.case-card h3,
+.media-card h3 {
+    margin: 0 0 10px;
+    font-size: 1.18rem;
+}
+
+.learning-list {
+    margin: 0;
+    padding-left: 1.2rem;
+    color: #d7e3f4;
+    line-height: 1.65;
+}
+
+.learning-list li + li {
+    margin-top: 8px;
+}
+
+.source-note,
+.practice-panel {
+    padding: 18px 20px;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(108, 229, 177, 0.2);
+    background: linear-gradient(135deg, rgba(108, 229, 177, 0.08), rgba(121, 168, 255, 0.06));
+    color: #d7e3f4;
+    line-height: 1.65;
+}
+
+.source-note strong {
+    color: var(--text);
+}
+
+.practice-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+.practice-panel h3 {
+    margin: 0 0 8px;
+    font-size: 1.25rem;
+}
+
+.vocab-grid article,
+.recipe-card {
+    display: grid;
+    gap: 8px;
+}
+
+.vocab-grid strong,
+.recipe-card strong {
+    color: var(--accent);
+}
+
+.vocab-grid span,
+.recipe-card span {
+    color: #d7e3f4;
+    line-height: 1.55;
+}
+
+.media-card {
+    display: grid;
+    grid-template-columns: 180px minmax(0, 1fr);
+    gap: 16px;
+    align-items: start;
+}
+
+.media-card img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
     border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -1952,8 +2103,19 @@ tbody tr:hover {
     .studio-workflow,
     .band-legend,
     .studio-scene-metrics,
-    .studio-pixel-grid {
+    .studio-pixel-grid,
+    .lesson-band,
+    .case-study-grid,
+    .recipe-grid,
+    .media-grid,
+    .vocab-grid,
+    .studio-band-picker-row {
         grid-template-columns: 1fr;
+    }
+
+    .practice-panel {
+        align-items: start;
+        flex-direction: column;
     }
 }
 
@@ -2044,6 +2206,10 @@ tbody tr:hover {
 
     .product-card-list {
         display: grid;
+    }
+
+    .media-card {
+        grid-template-columns: 1fr;
     }
 
     #studio-map {

@@ -32,6 +32,13 @@
                 </p>
             </div>
         </div>
+        <div class="hero lab-media">
+            <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="/img/landsat9.jpg">
+                <source data-src="https://svs.gsfc.nasa.gov/vis/a000000/a000600/a000665/a000665.mp4" type="video/mp4">
+            </video>
+            <button class="hero-video-toggle" type="button" data-video-toggle aria-pressed="false">Pause video</button>
+        </div>
+        <p class="body-copy studio-note mb-4">NASA visualization: the same Washington, DC scene zoomed from 30 m resolution (left) to 15 m resolution (right), from actual Landsat 7 data.</p>
         <div class="row g-4">
             <div class="col-xl-4">
                 <div class="panel h-100">
@@ -48,6 +55,18 @@
                     <div class="resolution-visual" id="resolution-visual"></div>
                 </div>
             </div>
+        </div>
+        <div class="lesson-band mt-4">
+            <article class="lesson-card">
+                <div class="eyebrow">Tutor Check</div>
+                <h3>Which resolution matters most?</h3>
+                <p class="body-copy">There is no single answer. Crop stress may need spectral and thermal evidence; flood response may need temporal density; small-field mapping may hit spatial limits; subtle reflectance change benefits from radiometric precision.</p>
+            </article>
+            <article class="lesson-card">
+                <div class="eyebrow">Apply It</div>
+                <h3>Say the tradeoff out loud</h3>
+                <p class="body-copy">A strong interpretation names what Landsat can see, what it cannot see, and which complementary mission or product might fill the gap.</p>
+            </article>
         </div>
         <div class="page-nav">
             <a class="button" href="/studio/orbit-lab">Previous: orbit lab</a>

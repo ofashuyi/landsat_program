@@ -6,4 +6,7 @@ public sealed record ImpactStory(
     string Title,
     string Summary,
     IReadOnlyList<ImpactMetric> Metrics,
-    string Story);
+    string Story,
+    string? Question = null,
+    string? Workflow = null,
+    string? Limitation = null);

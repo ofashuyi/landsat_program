@@ -58,6 +58,24 @@
                 </article>
             </div>
         </div>
+        <div class="lesson-band mt-4">
+            <article class="lesson-card">
+                <div class="eyebrow">Hands-On Rule</div>
+                <h3>Mask before measuring</h3>
+                <p class="body-copy">A beautiful pixel is not automatically a usable pixel. Teach students to check cloud, cloud shadow, snow, water, aerosol, saturation, terrain occlusion, and uncertainty layers before calculating indices or drawing conclusions.</p>
+            </article>
+            <article class="lesson-card">
+                <div class="eyebrow">Scale Factor Example</div>
+                <h3>Surface Temperature</h3>
+                <p class="body-copy">USGS Collection 2 Surface Temperature values need scaling before interpretation: <code>ST = (DN * 0.00341802) + 149.0</code>. Convert Kelvin to Celsius only after applying the product scale factor.</p>
+            </article>
+        </div>
+        <div class="recipe-grid mt-4">
+            <article class="recipe-card"><strong>Vegetation change</strong><span>Collection 2 Surface Reflectance, red/NIR, NDVI, QA_PIXEL cloud and shadow screening.</span></article>
+            <article class="recipe-card"><strong>Burn severity</strong><span>Surface Reflectance, NIR/SWIR, NBR or dNBR, pre-fire and post-fire dates.</span></article>
+            <article class="recipe-card"><strong>Urban heat</strong><span>Surface Temperature plus Surface Reflectance for vegetation, impervious surface, and shade context.</span></article>
+            <article class="recipe-card"><strong>Fast crop monitoring</strong><span>HLS for denser optical revisit, then original Landsat scenes when mission-specific details matter.</span></article>
+        </div>
         <div class="table-wrap mt-4">
             <table>
                 <thead>
@@ -117,6 +135,9 @@
             </article>
         </div>
         <p class="table-note">If the goal is modern operational analysis, Surface Reflectance, Surface Temperature, ARD, and HLS should usually take priority over a Level-1-only workflow.</p>
+        <div class="source-note mt-3">
+            <strong>Source trail:</strong> USGS Collection 2 pages document Level-2 science products, Quality Assessment bands, Surface Temperature caveats, data access through EarthExplorer, and the open no-cost Landsat data policy.
+        </div>
         <div class="page-nav">
             <a class="button" href="/briefing/applications">Previous: applications</a>
             <a class="button button-primary" href="/briefing/future">Next: future direction</a>

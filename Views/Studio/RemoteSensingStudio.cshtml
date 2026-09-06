@@ -55,6 +55,14 @@
                 <p>Use spectral, index, hover, and pixel cues together.</p>
             </div>
         </div>
+        <div class="practice-panel mb-4">
+            <div>
+                <div class="eyebrow">Studio Assignment</div>
+                <h3>Interpret one place three ways</h3>
+                <p class="body-copy">Choose a hotspot, compare an early and recent year, then explain the same change using one visual clue, one spectral/index clue, and one product or QA limitation.</p>
+            </div>
+            <a class="button" href="/briefing/applications">Review applications</a>
+        </div>
         <div class="row g-4">
             <div class="col-xl-4">
                 <div class="panel h-100 studio-sidebar">
@@ -69,6 +77,15 @@
                     <div class="studio-control-group">
                         <span class="studio-label">Interpretation mode</span>
                         <div class="studio-segmented" id="studio-viewmode"></div>
+                    </div>
+                    <div class="studio-control-group studio-band-picker" id="studio-custom-bands" hidden>
+                        <span class="studio-label">Custom band assignment</span>
+                        <div class="studio-band-picker-row">
+                            <label>Red<select class="select form-select" id="studio-band-r"></select></label>
+                            <label>Green<select class="select form-select" id="studio-band-g"></select></label>
+                            <label>Blue<select class="select form-select" id="studio-band-b"></select></label>
+                        </div>
+                        <p class="body-copy studio-note">Select "Custom" above, then assign any band to any channel to build your own composite from the selected scene.</p>
                     </div>
                     <div class="studio-control-group">
                         <span class="studio-label">Historical hotspot</span>

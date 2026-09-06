@@ -13,4 +13,5 @@ public sealed record ResolutionMode(
     IReadOnlyList<ResolutionBand>? Bands,
     IReadOnlyList<ResolutionTimeline>? Timelines,
     IReadOnlyList<ResolutionTone>? Tones,
-    string? Story);
+    string? Story,
+    string? TeacherNote = null);

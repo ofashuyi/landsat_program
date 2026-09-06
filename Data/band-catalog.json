@@ -7,6 +7,8 @@
       "why": "Closest to what the eye expects, useful for general orientation and broad communication.",
       "goodFor": "Coastlines, cities, clouds, general land cover context",
       "caution": "Vegetation stress and burn scars can be less obvious than in false-color views.",
+      "lesson": "Start here when introducing a place. Ask students to identify water, vegetation, bare ground, clouds, and built areas before switching to analytical combinations.",
+      "practice": "Find one feature that is obvious in natural color and one feature that becomes easier only after changing bands.",
       "colors": {
         "landA": "rgba(95, 144, 94, 0.92)",
         "landB": "rgba(76, 126, 79, 0.9)",
@@ -24,6 +26,8 @@
       "why": "Pushes healthy vegetation into vivid reds by using near-infrared reflectance.",
       "goodFor": "Vegetation vigor, wetlands, crop boundaries, water-land separation",
       "caution": "Urban surfaces and bare ground can look unfamiliar to non-remote-sensing audiences.",
+      "lesson": "Healthy leaves reflect strongly in near infrared and absorb red light for photosynthesis. That contrast is the physical reason NDVI and color-infrared views are useful.",
+      "practice": "Compare a vegetated patch with water or urban land. Explain why the red response is not ordinary visible red.",
       "colors": {
         "landA": "rgba(214, 76, 92, 0.94)",
         "landB": "rgba(189, 56, 84, 0.92)",
@@ -41,6 +45,8 @@
       "why": "Highlights moisture differences and makes burn scars, dry vegetation, and exposed soils more distinct.",
       "goodFor": "Wildfire assessment, drought patterns, moisture gradients, disturbance mapping",
       "caution": "This is analytically powerful but visually abstract compared with natural color.",
+      "lesson": "Shortwave infrared responds strongly to moisture and char. After fire, vegetation loses NIR strength and the SWIR signal becomes a key clue.",
+      "practice": "Use this view to separate a burn scar, dry bare soil, and healthy vegetation. Name one reason season still matters.",
       "colors": {
         "landA": "rgba(116, 79, 54, 0.94)",
         "landB": "rgba(136, 93, 63, 0.9)",
@@ -58,6 +64,8 @@
       "why": "Separates built-up surfaces, bare materials, and some geologic variation more strongly than natural color.",
       "goodFor": "Urban extent, exposed soils, lithologic contrast, infrastructure context",
       "caution": "Vegetation cues become less intuitive than in natural or color-infrared renderings.",
+      "lesson": "Urban materials and exposed soils often reflect differently in SWIR and visible bands than vegetation-rich surfaces.",
+      "practice": "Compare an urban edge with surrounding bare ground. Decide whether an index alone would be enough or whether context is needed.",
       "colors": {
         "landA": "rgba(102, 134, 88, 0.88)",
         "landB": "rgba(139, 118, 74, 0.84)",

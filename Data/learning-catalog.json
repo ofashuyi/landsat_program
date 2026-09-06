@@ -6,6 +6,7 @@
       "title": "Single Landsat baseline",
       "description": "One Landsat satellite flies in a near-polar, sun-synchronous orbit at about 705 km altitude, crossing the equator at roughly the same local morning time and revisiting the same place every 16 days.",
       "caption": "A single Landsat mission provides systematic global land imaging with a 16-day revisit cycle.",
+      "lesson": "Use this as the baseline: a single satellite can build a global archive, but clouds and 16-day timing mean many events need patience or complementary data.",
       "facts": [
         { "label": "Orbit", "value": "Near-polar, sun-synchronous" },
         { "label": "Altitude", "value": "705 km" },
@@ -21,6 +22,7 @@
       "title": "Landsat 8 and 9 working as a pair",
       "description": "Landsat 8 and Landsat 9 occupy complementary phasing so they image the same location eight days apart. That near-weekly cadence is especially important for water quality, crop condition, and tropical forest monitoring.",
       "caption": "Two Landsat satellites, phased eight days apart, create an 8-day repeat over the same location.",
+      "lesson": "The Landsat 8 and 9 pair is a practical monitoring improvement because the same type of measurement returns sooner without abandoning archive continuity.",
       "facts": [
         { "label": "Active pair", "value": "Landsat 8 + 9" },
         { "label": "Daily scenes", "value": "> 700/day from Landsat 9" },
@@ -36,6 +38,7 @@
       "title": "HLS virtual constellation",
       "description": "Harmonized Landsat and Sentinel-2 treats multiple compatible missions as one analysis-ready observing system. NASA reports a global median repeat frequency under 1.4 days in 2025 with Landsat 8/9 and Sentinel-2A/B/C.",
       "caption": "Landsat plus Sentinel-2 dramatically increases repeat observations while preserving Landsat-like analysis workflows.",
+      "lesson": "HLS is a virtual constellation lesson: harmonization trades mission-specific purity for denser observation opportunities and simpler time-series analysis.",
       "facts": [
         { "label": "Partners", "value": "Landsat 8/9 + Sentinel-2A/B/C" },
         { "label": "Global median repeat", "value": "< 1.4 days in 2025" },
@@ -64,7 +67,8 @@
         { "title": "15 m", "text": "Sharper panchromatic detail for edges, roads, and urban structure." },
         { "title": "30 m", "text": "The core Landsat working scale for vegetation, water, land cover, and change detection." },
         { "title": "100 m thermal", "text": "Coarser heat measurements, still extremely useful for evapotranspiration and urban heat analysis." }
-      ]
+      ],
+      "teacherNote": "Ask students what a 30 m pixel can summarize: a field block, part of a reservoir edge, a road corridor, or a mixed urban surface. Then ask what it cannot prove."
     },
     {
       "id": "spectral",
@@ -90,7 +94,8 @@
         { "title": "Vegetation and moisture", "text": "NIR and SWIR support plant condition, burn severity, and surface moisture analysis." },
         { "title": "Water and coastlines", "text": "Coastal and visible bands help with water quality, turbidity, and shoreline interpretation." },
         { "title": "Heat and energy balance", "text": "Thermal bands make Landsat uniquely useful for water use, drought, and urban heat studies." }
-      ]
+      ],
+      "teacherNote": "Connect bands to physics: leaves, water, bare soil, snow, smoke, and hot surfaces interact with wavelength regions differently."
     },
     {
       "id": "temporal",
@@ -107,7 +112,8 @@
         { "title": "Single Landsat", "length": 16, "activeIndexes": [ 0 ] },
         { "title": "Landsat pair", "length": 8, "activeIndexes": [ 0, 4 ] },
         { "title": "HLS constellation", "length": 10, "activeIndexes": [ 0, 2, 4, 6, 8 ] }
-      ]
+      ],
+      "teacherNote": "Temporal resolution is not only satellite design. It is also cloud cover, latitude, season, task urgency, and whether HLS or another mission can help."
     },
     {
       "id": "radiometric",
@@ -125,7 +131,8 @@
         { "title": "12-bit", "label": "4,096 tonal steps", "className": "tone-12" },
         { "title": "14-bit", "label": "16,384 tonal steps", "className": "tone-14" }
       ],
-      "story": "Higher radiometric precision helps scientists detect subtler differences in dark vegetation, bright soils, snow, and water while preserving strong time-series comparability."
+      "story": "Higher radiometric precision helps scientists detect subtler differences in dark vegetation, bright soils, snow, and water while preserving strong time-series comparability.",
+      "teacherNote": "Use radiometric resolution when students assume all images with the same pixel size are equally informative."
     }
   ]
 }

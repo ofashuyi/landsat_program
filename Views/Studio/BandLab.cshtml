@@ -32,6 +32,13 @@
                 </p>
             </div>
         </div>
+        <div class="hero lab-media">
+            <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="/img/landsat9.jpg">
+                <source data-src="https://svs.gsfc.nasa.gov/vis/a000000/a030700/a030797/soberanes_fire_landsat_432_vs_754_720p.mp4" type="video/mp4">
+            </video>
+            <button class="hero-video-toggle" type="button" data-video-toggle aria-pressed="false">Pause video</button>
+        </div>
+        <p class="body-copy studio-note mb-4">NASA visualization: the 2016 Soberanes Fire in true color (bands 4-3-2) compared with shortwave/near-infrared false color (bands 7-5-4).</p>
         <div class="row g-4">
             <div class="col-xl-4">
                 <div class="panel h-100">
@@ -43,6 +50,14 @@
                     <div class="band-viewer" id="band-viewer" aria-live="polite"></div>
                 </div>
             </div>
+        </div>
+        <div class="practice-panel mt-4">
+            <div>
+                <div class="eyebrow">Guided Exercise</div>
+                <h3>Pick the band recipe from the question</h3>
+                <p class="body-copy">Healthy vegetation should push you toward color infrared or NDVI reasoning. Burn scars and dry surfaces should push you toward SWIR. Public communication may still begin with natural color before moving into analytical views.</p>
+            </div>
+            <a class="button" href="/briefing/products">Review product choices</a>
         </div>
         <div class="page-nav">
             <a class="button" href="/studio/resolution-lab">Previous: resolution lab</a>

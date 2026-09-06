@@ -1,6 +1,6 @@
 @{
     ViewData["Title"] = "Landsat Program Explorer | Briefing";
-    ViewData["Description"] = "Choose a short Landsat briefing chapter: overview, foundations, missions, applications, product guidance, future direction, or resources.";
+    ViewData["Description"] = "Choose a Landsat tutoring chapter with source-backed remote sensing concepts, practical workflows, case studies, media, and studio exercises.";
     ViewData["OgTitle"] = "Landsat Program Explorer | Briefing";
     ViewData["OgDescription"] = "A chapter-based Landsat briefing for mission history, applications, product guidance, and next steps.";
     ViewData["OgImage"] = "/img/landsat9.jpg";
@@ -21,13 +21,13 @@
 
     var chapters = new[]
     {
-        new { Number = "01", Title = "Program Overview", Text = "Start with the scale, continuity, and value of the Landsat record.", Href = "/briefing/overview" },
-        new { Number = "02", Title = "Foundations", Text = "Learn cadence, scale, spectral range, and modern analysis-ready products.", Href = "/briefing/foundations" },
-        new { Number = "03", Title = "Mission Fleet", Text = "Filter, inspect, and compare Landsat missions across the program timeline.", Href = "/briefing/missions" },
-        new { Number = "04", Title = "Applications", Text = "See where Landsat supports water, agriculture, hazards, cities, and land change.", Href = "/briefing/applications" },
-        new { Number = "05", Title = "Products", Text = "Choose between Level-1, Surface Reflectance, Surface Temperature, ARD, and HLS.", Href = "/briefing/products" },
-        new { Number = "06", Title = "Future Direction", Text = "Understand what is stable and what is still evolving for Landsat continuity.", Href = "/briefing/future" },
-        new { Number = "07", Title = "Resources", Text = "Jump to official portals, documentation, and the interactive studio.", Href = "/briefing/resources" }
+        new { Number = "01", Title = "Program Overview", Text = "Start with the continuity, public value, and why moderate-resolution land imaging matters.", Href = "/briefing/overview" },
+        new { Number = "02", Title = "Foundations", Text = "Learn pixel size, spectral response, revisit cadence, radiometry, and common beginner misconceptions.", Href = "/briefing/foundations" },
+        new { Number = "03", Title = "Mission Fleet", Text = "Compare sensors, mission eras, Landsat 7's end, and the reason archive continuity is powerful.", Href = "/briefing/missions" },
+        new { Number = "04", Title = "Applications", Text = "Work through water, agriculture, fire, urban heat, forest, and land-change case studies.", Href = "/briefing/applications" },
+        new { Number = "05", Title = "Products", Text = "Choose Level-1, Surface Reflectance, Surface Temperature, ARD, or HLS for a practical task.", Href = "/briefing/products" },
+        new { Number = "06", Title = "Future Direction", Text = "Separate stable Landsat continuity needs from evolving Landsat Next architecture decisions.", Href = "/briefing/future" },
+        new { Number = "07", Title = "Resources", Text = "Use official portals, high-resolution imagery, videos, documentation, and classroom resources.", Href = "/briefing/resources" }
     };
 }
 
@@ -42,8 +42,8 @@
             <div class="eyebrow">Program Briefing | NASA + USGS</div>
             <h1>Explore Landsat one short chapter at a time.</h1>
             <p>
-                Pick the chapter you need now, then move forward when the context is useful. The briefing no longer asks you
-                to scroll through the whole program in one pass.
+                Pick the chapter you need now, then move from concept to interpretation. Each page is shaped like a short
+                tutoring session: learn the idea, inspect a real use case, then practice in the studio.
             </p>
             <div class="hero-actions">
                 <a class="button button-primary" href="/briefing/overview">Start with overview</a>
@@ -54,16 +54,16 @@
             <h2>Short-page structure</h2>
             <ul class="hero-panel-list">
                 <li>
-                    <strong>One topic per page</strong>
-                    <span class="body-copy">Overview, foundations, fleet, applications, data, future, and resources each get their own route.</span>
+                    <strong>Learn, then apply</strong>
+                    <span class="body-copy">Every chapter now points toward practical remote-sensing choices, not just facts to memorize.</span>
                 </li>
                 <li>
-                    <strong>Interactive tools stay focused</strong>
-                    <span class="body-copy">Mission comparison, workflow guidance, and the studio tools now live where users expect them.</span>
+                    <strong>Real source trail</strong>
+                    <span class="body-copy">NASA and USGS pages, product guides, media galleries, and education resources are linked where they help.</span>
                 </li>
                 <li>
-                    <strong>Old entry points still work</strong>
-                    <span class="body-copy">Legacy anchors redirect to the closest new chapter, so bookmarked sections remain useful.</span>
+                    <strong>Studio practice</strong>
+                    <span class="body-copy">Exercises connect bands, indices, thermal products, QA masks, scenes, and interpretation habits.</span>
                 </li>
             </ul>
         </aside>
@@ -79,8 +79,8 @@
             </div>
             <div class="col-lg-5">
                 <p class="body-copy">
-                    Each chapter is intentionally smaller than the old long page, with previous and next links to preserve
-                    the story when you want to move in sequence.
+                    Chapters are short enough for tutoring, but each one now carries richer scholastic content: objectives,
+                    vocabulary, examples, practice prompts, and official media sources.
                 </p>
             </div>
         </div>
@@ -99,8 +99,8 @@
     <footer class="site-footer">
         <h3>About the split</h3>
         <p>
-            The app now uses MVC routes for short chapters and dedicated tools. This keeps the learning path intact while
-            reducing the scroll depth on any single page.
+            Use this as a guided remote-sensing notebook: start with the briefing, jump to official NASA/USGS references
+            when needed, and return to the studio when an idea needs to become visual.
         </p>
     </footer>
 </main>

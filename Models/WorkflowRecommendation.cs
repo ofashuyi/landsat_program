@@ -6,4 +6,5 @@ public sealed record WorkflowRecommendation(
     string Why,
     string BestFor,
     string Tradeoff,
-    string NextStep);
+    string NextStep,
+    string? TeachingTip = null);

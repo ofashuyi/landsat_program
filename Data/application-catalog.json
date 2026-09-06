@@ -11,6 +11,10 @@
         { "label": "Typical scale", "value": "Field to watershed" }
       ],
       "story": "From irrigation districts to river basins, Landsat helps convert imagery into decisions about consumptive water use, crop stress, reservoir conditions, and changing hydrologic patterns."
+      ,
+      "question": "Where is water present, where is it being consumed by vegetation, and how reliable is the scene after cloud masking?",
+      "workflow": "Use Surface Reflectance for open-water and vegetation context, Surface Temperature for heat and evapotranspiration clues, and QA bands to screen clouds and shadows.",
+      "limitation": "Water color, shallow sediment, algae, cloud shadow, season, and reservoir operations can confuse a simple water/no-water interpretation."
     },
     {
       "id": "forests",
@@ -23,6 +27,10 @@
         { "label": "Typical fusion", "value": "Landsat + GEDI" }
       ],
       "story": "Landsat shows where forest change happened and when; GEDI adds the missing 3D structure. Together they support biomass, habitat, and sustainable forest management applications."
+      ,
+      "question": "Is the forest signal changing because of clearing, fire, seasonal phenology, regrowth, drought, or sensor/cloud artifacts?",
+      "workflow": "Use multi-date Surface Reflectance, NDVI/NBR-style interpretation, and a consistent seasonal window; add GEDI or field plots when structure or biomass is the question.",
+      "limitation": "Landsat shows canopy and disturbance history well, but it does not directly measure tree height or below-canopy structure."
     },
     {
       "id": "agriculture",
@@ -35,6 +43,10 @@
         { "label": "Typical cadence", "value": "8-day Landsat pair or faster with HLS" }
       ],
       "story": "Landsat helps move agricultural monitoring beyond color imagery toward energy balance, evapotranspiration, and crop stress signals that matter operationally."
+      ,
+      "question": "Which fields are green, which are stressed, and which may be consuming irrigation water?",
+      "workflow": "Pair Surface Reflectance vegetation indices with Surface Temperature; use HLS when crop changes need denser optical revisit.",
+      "limitation": "Crop type, growth stage, field boundaries, irrigation timing, and clouds must be considered before comparing dates."
     },
     {
       "id": "cities",
@@ -47,6 +59,10 @@
         { "label": "Complement", "value": "ECOSTRESS for extra thermal detail" }
       ],
       "story": "Landsat provides repeatable heat-island context over decades, which is critical for planning cooling infrastructure, greening strategies, and heat-risk interventions."
+      ,
+      "question": "Which surfaces are hottest, and are those heat patterns related to vegetation loss, impervious cover, or bare soil?",
+      "workflow": "Use Surface Temperature with Surface Reflectance context for vegetation and built surfaces; compare similar seasons and acquisition times.",
+      "limitation": "Land surface temperature is not the same as air temperature, and shaded surfaces, roofs, materials, and humidity can complicate interpretation."
     },
     {
       "id": "hazards",
@@ -59,6 +75,10 @@
         { "label": "Environmental value", "value": "Trend context over decades" }
       ],
       "story": "For hazards, Landsat is often the archive that anchors event context, recovery trajectories, and long-term land-change baselines."
+      ,
+      "question": "What changed before and after the event, and how long does recovery take?",
+      "workflow": "Use pre-event and post-event Surface Reflectance, NBR for burn or disturbance, NDWI for flooding, and QA masks to remove clouds and shadows.",
+      "limitation": "Rapid response can be limited by revisit timing and clouds; HLS or radar missions may be needed for faster or all-weather context."
     }
   ],
   "complementaryMissions": [

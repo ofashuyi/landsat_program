@@ -62,6 +62,10 @@ const workflowResult = document.getElementById("workflow-result");
 const studioBasemap = document.getElementById("studio-basemap");
 const studioSatellite = document.getElementById("studio-satellite");
 const studioViewmode = document.getElementById("studio-viewmode");
+const studioCustomBands = document.getElementById("studio-custom-bands");
+const studioBandR = document.getElementById("studio-band-r");
+const studioBandG = document.getElementById("studio-band-g");
+const studioBandB = document.getElementById("studio-band-b");
 const studioMapTarget = document.getElementById("studio-map");
 const studioHotspotsContainer = document.getElementById("studio-hotspots");
 const studioYearSlider = document.getElementById("studio-year-slider");
@@ -116,7 +120,17 @@ let studioState = {
     scenes: [],
     selectedSceneId: null,
     loadingScenes: false,
-    sceneLoadError: false
+    sceneLoadError: false,
+    customBands: { r: "red", g: "green", b: "blue" }
+};
+const BAND_KEY_LABELS = {
+    blue: "Blue",
+    green: "Green",
+    red: "Red",
+    nir: "NIR",
+    swir1: "SWIR-1",
+    swir2: "SWIR-2",
+    thermal: "Thermal"
 };
 let studioMap = null;
 let studioBaseLayers = {};
@@ -489,7 +503,12 @@ function renderOrbitFacts() {
             <span>${fact.label}</span>
             <strong>${fact.value}</strong>
         </div>
-    `).join("");
+    `).join("") + (mode.lesson ? `
+        <div class="orbit-fact">
+            <span>Tutor note</span>
+            <strong>${mode.lesson}</strong>
+        </div>
+    ` : "");
 }
 
 function animateOrbits() {
@@ -656,6 +675,13 @@ function renderResolutionMode() {
         </div>
     `).join("");
     resolutionVisual.innerHTML = renderResolutionVisual(mode);
+    if (mode.teacherNote) {
+        resolutionVisual.insertAdjacentHTML("beforeend", `
+            <div class="impact-story-card">
+                <strong>Tutor note:</strong> ${mode.teacherNote}
+            </div>
+        `);
+    }
 }
 
 async function initializeResolutionLab() {
@@ -734,6 +760,16 @@ function renderBandViewer() {
                     <strong>${preset.caution}</strong>
                 </div>
             </div>
+            ${preset.lesson ? `
+                <div class="impact-story-card">
+                    <strong>Lesson:</strong> ${preset.lesson}
+                </div>
+            ` : ""}
+            ${preset.practice ? `
+                <div class="impact-story-card">
+                    <strong>Practice:</strong> ${preset.practice}
+                </div>
+            ` : ""}
         </div>
     `;
 
@@ -863,6 +899,21 @@ function renderImpactHero() {
             <div class="impact-story-card">
                 ${story.story}
             </div>
+            ${story.question ? `
+                <div class="impact-story-card">
+                    <strong>Question:</strong> ${story.question}
+                </div>
+            ` : ""}
+            ${story.workflow ? `
+                <div class="impact-story-card">
+                    <strong>Workflow:</strong> ${story.workflow}
+                </div>
+            ` : ""}
+            ${story.limitation ? `
+                <div class="impact-story-card">
+                    <strong>Limitation:</strong> ${story.limitation}
+                </div>
+            ` : ""}
         </div>
     `;
 }
@@ -1015,6 +1066,11 @@ function renderWorkflowResult() {
             <div class="impact-story-card">
                 <strong>Next step:</strong> ${recommendation.nextStep}
             </div>
+            ${recommendation.teachingTip ? `
+                <div class="impact-story-card">
+                    <strong>Teaching tip:</strong> ${recommendation.teachingTip}
+                </div>
+            ` : ""}
         </div>
     `;
 }
@@ -1303,7 +1359,12 @@ function getStudioRasterConfig(scene) {
             sceneUsesRequesterPaysAssets(scene, ["nir08", "nir", "sr_b5", "b5"])
         )) ||
         (studioState.viewMode === "thermal" &&
-            sceneUsesRequesterPaysAssets(scene, ["lwir11", "st_b10", "thermal", "bt_band10", "b10"]));
+            sceneUsesRequesterPaysAssets(scene, ["lwir11", "st_b10", "thermal", "bt_band10", "b10"])) ||
+        (studioState.viewMode === "custom" && (
+            sceneUsesRequesterPaysAssets(scene, [studioState.customBands.r]) ||
+            sceneUsesRequesterPaysAssets(scene, [studioState.customBands.g]) ||
+            sceneUsesRequesterPaysAssets(scene, [studioState.customBands.b])
+        ));
 
     if (requesterPaysOnly) {
         studioRasterMessage = "This scene only exposes requester-pays S3 band assets, which cannot be loaded directly in this browser-only client. The footprint and scene metadata are still available.";
@@ -1454,6 +1515,27 @@ function getStudioRasterConfig(scene) {
                 },
                 message: "Rendering a thermal-style raster from the selected scene asset when a thermal-compatible band is exposed."
             };
+        case "custom": {
+            const { r, g, b } = studioState.customBands;
+            const rAsset = assets[r];
+            const gAsset = assets[g];
+            const bAsset = assets[b];
+            if (!rAsset || !gAsset || !bAsset) {
+                return null;
+            }
+            return {
+                source: createReflectanceSource([rAsset, gAsset, bAsset]),
+                descriptor: {
+                    mode: "custom",
+                    bands: [r, g, b]
+                },
+                style: {
+                    color: ["array", ["band", 1], ["band", 2], ["band", 3], 1],
+                    gamma: 1.1
+                },
+                message: `Rendering a custom composite: red = ${BAND_KEY_LABELS[r]}, green = ${BAND_KEY_LABELS[g]}, blue = ${BAND_KEY_LABELS[b]}.`
+            };
+        }
         default:
             return null;
     }
@@ -2059,6 +2141,30 @@ function updateStudioBasemapVisibility() {
     });
 }
 
+function initializeStudioCustomBands() {
+    const options = Object.entries(BAND_KEY_LABELS)
+        .map(([key, label]) => `<option value="${key}">${label}</option>`)
+        .join("");
+    [studioBandR, studioBandG, studioBandB].forEach((select) => {
+        select.innerHTML = options;
+    });
+    studioBandR.value = studioState.customBands.r;
+    studioBandG.value = studioState.customBands.g;
+    studioBandB.value = studioState.customBands.b;
+
+    const wireBandSelect = (channel, select) => {
+        select.addEventListener("change", () => {
+            studioState.customBands[channel] = select.value;
+            updateStudioMapVisualization();
+            updateStudioRasterLayer();
+            renderStudioPanels();
+        });
+    };
+    wireBandSelect("r", studioBandR);
+    wireBandSelect("g", studioBandG);
+    wireBandSelect("b", studioBandB);
+}
+
 function renderStudio() {
     renderStudioChoiceButtons(studioBasemap, studioOptions.basemaps, studioState.basemap, (id) => {
         studioState.basemap = id;
@@ -2075,6 +2181,7 @@ function renderStudio() {
         updateStudioMapVisualization();
         updateStudioRasterLayer();
     });
+    studioCustomBands.hidden = studioState.viewMode !== "custom";
     renderStudioHotspots();
     renderStudioPanels();
     updateStudioBasemapVisibility();
@@ -2102,6 +2209,10 @@ async function initializeStudioMap() {
             studioBasemap,
             studioSatellite,
             studioViewmode,
+            studioCustomBands,
+            studioBandR,
+            studioBandG,
+            studioBandB,
             studioHotspotsContainer,
             studioYearSlider,
             studioYearLabel,
@@ -2264,6 +2375,7 @@ async function initializeStudioMap() {
         scheduleStudioSceneLoad();
     });
 
+    initializeStudioCustomBands();
     renderStudio();
     renderStudioPixelInspector();
     renderStudioHoverProbe();

@@ -204,7 +204,8 @@
       { "id": "water", "label": "Water", "note": null },
       { "id": "burn", "label": "Burn", "note": null },
       { "id": "urban", "label": "Urban", "note": null },
-      { "id": "thermal", "label": "Thermal", "note": null }
+      { "id": "thermal", "label": "Thermal", "note": null },
+      { "id": "custom", "label": "Custom", "note": "Assign any band to red, green, or blue" }
     ]
   },
   "modeDetails": {
@@ -302,6 +303,22 @@
         { "label": "NIR", "value": 21 },
         { "label": "SWIR", "value": 39 },
         { "label": "Thermal", "value": 92 }
+      ]
+    },
+    "custom": {
+      "title": "Custom composite",
+      "copy": "Every fixed preset above is really just a choice of which three bands become red, green, and blue. Make that choice yourself and see how it changes what stands out.",
+      "indexTitle": "Custom RGB reading",
+      "indexContext": "There is no single computed index here. Choose the band assignment that best isolates the feature you are studying, then compare the result against the fixed presets.",
+      "metric": "urban",
+      "color": "rgba(200, 200, 200, 0.28)",
+      "spectral": [
+        { "label": "Blue", "value": 46 },
+        { "label": "Green", "value": 58 },
+        { "label": "Red", "value": 52 },
+        { "label": "NIR", "value": 41 },
+        { "label": "SWIR", "value": 33 },
+        { "label": "Thermal", "value": 18 }
       ]
     }
   }

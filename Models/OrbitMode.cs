@@ -7,4 +7,5 @@ public sealed record OrbitMode(
     string Description,
     string Caption,
     IReadOnlyList<LearningFact> Facts,
-    IReadOnlyList<string> Visible);
+    IReadOnlyList<string> Visible,
+    string? Lesson = null);
