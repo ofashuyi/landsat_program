@@ -77,6 +77,24 @@ public sealed class CatalogServiceTests
     }
 
     [Fact]
+    public async Task BandCatalog_PresetsIncludeLessonAndPractice()
+    {
+        // Regression test: band-catalog.json has always carried "lesson" and "practice"
+        // text for every preset, and js/app.js has always rendered them if present, but
+        // BandPreset did not declare those properties, so System.Text.Json silently
+        // dropped them and the client-side "Lesson"/"Practice" cards never appeared.
+        var service = new JsonBandCatalogService(_environment);
+
+        var catalog = await service.GetCatalogAsync();
+
+        Assert.All(catalog.Presets, preset =>
+        {
+            Assert.False(string.IsNullOrWhiteSpace(preset.Lesson));
+            Assert.False(string.IsNullOrWhiteSpace(preset.Practice));
+        });
+    }
+
+    [Fact]
     public async Task DataGuide_LoadsGuidesAndRecommendations()
     {
         var service = new JsonDataGuideService(_environment);
@@ -88,6 +106,19 @@ public sealed class CatalogServiceTests
     }
 
     [Fact]
+    public async Task DataGuide_RecommendationsIncludeTeachingTip()
+    {
+        // Regression test: same silently-dropped-field bug as the band catalog, but for
+        // WorkflowRecommendation.TeachingTip.
+        var service = new JsonDataGuideService(_environment);
+
+        var catalog = await service.GetCatalogAsync();
+
+        Assert.All(catalog.Recommendations.Values, recommendation =>
+            Assert.False(string.IsNullOrWhiteSpace(recommendation.TeachingTip)));
+    }
+
+    [Fact]
     public async Task LearningCatalog_LoadsOrbitAndResolutionModes()
     {
         var service = new JsonLearningCatalogService(_environment);
@@ -96,5 +127,35 @@ public sealed class CatalogServiceTests
 
         Assert.NotEmpty(catalog.OrbitModes);
         Assert.NotEmpty(catalog.ResolutionModes);
+    }
+
+    [Fact]
+    public async Task LearningCatalog_OrbitModesIncludeLessonAndResolutionModesIncludeTeacherNote()
+    {
+        // Regression test: same silently-dropped-field bug as the band catalog, but for
+        // OrbitMode.Lesson and ResolutionMode.TeacherNote.
+        var service = new JsonLearningCatalogService(_environment);
+
+        var catalog = await service.GetCatalogAsync();
+
+        Assert.All(catalog.OrbitModes, mode => Assert.False(string.IsNullOrWhiteSpace(mode.Lesson)));
+        Assert.All(catalog.ResolutionModes, mode => Assert.False(string.IsNullOrWhiteSpace(mode.TeacherNote)));
+    }
+
+    [Fact]
+    public async Task ApplicationCatalog_ImpactStoriesIncludeQuestionWorkflowAndLimitation()
+    {
+        // Regression test: same silently-dropped-field bug as the band catalog, but for
+        // ImpactStory.Question, ImpactStory.Workflow, and ImpactStory.Limitation.
+        var service = new JsonApplicationCatalogService(_environment);
+
+        var catalog = await service.GetCatalogAsync();
+
+        Assert.All(catalog.ImpactStories, story =>
+        {
+            Assert.False(string.IsNullOrWhiteSpace(story.Question));
+            Assert.False(string.IsNullOrWhiteSpace(story.Workflow));
+            Assert.False(string.IsNullOrWhiteSpace(story.Limitation));
+        });
     }
 }
