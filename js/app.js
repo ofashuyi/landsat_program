@@ -98,7 +98,7 @@ const satellites = {
 
 let activeFilter = "all";
 let activeMissionId = "landsat9";
-let comparedMissionIds = ["landsat8", "landsat9"];
+let comparedMissionIds = [];
 let activeOrbitMode = "pair";
 let activeResolutionMode = "spatial";
 let activeBandPresetId = "false-vegetation";
