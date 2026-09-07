@@ -530,6 +530,7 @@ section {
     width: 100%;
     aspect-ratio: 16 / 9;
     object-fit: cover;
+    object-position: center top;
     margin-bottom: 16px;
     border-radius: var(--radius-lg);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -737,6 +738,7 @@ section {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    min-height: 40px;
 }
 
 .mode-button,
@@ -945,6 +947,7 @@ section {
     display: grid;
     gap: 18px;
     margin-top: 18px;
+    min-height: 420px;
 }
 
 .band-preset-list,
@@ -1666,6 +1669,7 @@ section {
     width: 100%;
     aspect-ratio: 16 / 10;
     object-fit: cover;
+    object-position: center top;
     border-radius: var(--radius-lg);
     border: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -1673,6 +1677,7 @@ section {
 .complement-grid {
     display: grid;
     gap: 12px;
+    min-height: 380px;
 }
 
 .complement-card {
