@@ -2506,6 +2506,8 @@ function initializeHeroVideoControls() {
             loadHeroVideoSource(video);
             if (reducedMotion) {
                 video.pause();
+            } else {
+                video.play().catch(() => {});
             }
         } else {
             // Skip the ~19 MB hero video download by default on small screens, metered
