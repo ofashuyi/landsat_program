@@ -13,6 +13,20 @@
     <Content Remove="LandsatProgram.Tests\**" />
     <None Remove="LandsatProgram.Tests\**" />
   </ItemGroup>
+
+  <!--
+    Program.cs serves assets, css, dist, fonts, img, js, and vendor from ContentRootPath at
+    runtime (NamespacedFileProvider), but the SDK's default item globs only copy wwwroot/**
+    and *.json files to the publish output. Without this, every stylesheet, script, image,
+    font, and vendor library 404s in a real `dotnet publish` deployment even though `dotnet
+    run` works fine locally (there, ContentRootPath is the source tree itself).
+  -->
+  <ItemGroup>
+    <None Remove="assets\**;css\**;dist\**;fonts\**;img\**;js\**;vendor\**" />
+    <Content Include="assets\**;css\**;dist\**;fonts\**;img\**;js\**;vendor\**"
+             CopyToOutputDirectory="PreserveNewest"
+             CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
   <Target Name="StopLockedDebugHostBeforeBuild"
           Condition="'$(Configuration)' == 'Debug' and '$(OS)' == 'Windows_NT' and '$(DesignTimeBuild)' != 'true'">
     <Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -File &quot;$(MSBuildProjectDirectory)\build\Stop-LockedDebugHost.ps1&quot; -ProjectDirectory &quot;$(MSBuildProjectDirectory)&quot; -Configuration &quot;$(Configuration)&quot; -TargetFramework &quot;$(TargetFramework)&quot;"

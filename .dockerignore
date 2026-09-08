@@ -1,0 +1,9 @@
+bin/
+obj/
+.git/
+.vs/
+.claude/
+tools/
+design-source/
+LandsatProgram.Tests/
+*.user
