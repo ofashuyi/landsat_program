@@ -2626,6 +2626,66 @@ function initializeWayfinding() {
     localLinks.forEach(({ section }) => observer.observe(section));
 }
 
+// Redraws the tab favicon each frame as a satellite orbits the earth, matching the
+// header's brand-mark colors. Geometry mirrors build/gen-favicon.mjs, which renders
+// the static fallback icons (favicon.ico etc.) this keeps in sync with.
+function initializeAnimatedFavicon() {
+    const link = document.getElementById("favicon-dynamic");
+    if (!link || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        return;
+    }
+
+    const size = 64;
+    const canvas = document.createElement("canvas");
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) {
+        return;
+    }
+
+    const rx = 40;
+    const ry = 18;
+    const tiltDeg = -20;
+    const tiltRad = (tiltDeg * Math.PI) / 180;
+
+    const buildSvg = (angleDeg) => {
+        const rad = (angleDeg * Math.PI) / 180;
+        const ex = rx * Math.cos(rad);
+        const ey = ry * Math.sin(rad);
+        const sx = 50 + ex * Math.cos(tiltRad) - ey * Math.sin(tiltRad);
+        const sy = 50 + ex * Math.sin(tiltRad) + ey * Math.cos(tiltRad);
+        const behind = Math.sin(rad) > 0.2;
+        const satellite = `<circle cx="${sx.toFixed(2)}" cy="${sy.toFixed(2)}" r="${behind ? 6 : 8}" fill="${behind ? "#3d8f68" : "#6ce5b1"}"/>`;
+        return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <circle cx="50" cy="50" r="49" fill="#08111f"/>
+  <ellipse cx="50" cy="50" rx="${rx}" ry="${ry}" transform="rotate(${tiltDeg} 50 50)" fill="none" stroke="#79a8ff" stroke-opacity="0.55" stroke-width="3"/>
+  ${behind ? satellite : ""}
+  <circle cx="50" cy="50" r="26" fill="#79a8ff"/>
+  <path d="M34 34c6-6 14-6 18-1 4 5 0 11-7 12-8 1-15-6-11-11z" fill="#6ce5b1"/>
+  ${!behind ? satellite : ""}
+</svg>`;
+    };
+
+    const totalFrames = 36;
+    let frame = 0;
+    const img = new Image();
+
+    const renderFrame = () => {
+        const angleDeg = -20 + (frame / totalFrames) * 360;
+        img.onload = () => {
+            ctx.clearRect(0, 0, size, size);
+            ctx.drawImage(img, 0, 0, size, size);
+            link.href = canvas.toDataURL("image/png");
+        };
+        img.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(buildSvg(angleDeg))}`;
+        frame = (frame + 1) % totalFrames;
+    };
+
+    renderFrame();
+    setInterval(renderFrame, 180);
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
     if (initializeLegacyAnchorRedirects()) {
         return;
@@ -2633,6 +2693,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     initializeHeroVideoControls();
     initializeWayfinding();
+    initializeAnimatedFavicon();
     await initializeOrbitLab();
     await initializeResolutionLab();
     await initializeBandLab();

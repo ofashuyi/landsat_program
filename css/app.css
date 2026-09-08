@@ -2152,6 +2152,24 @@ tbody tr:hover {
     padding-left: 18px;
 }
 
+.site-attribution {
+    margin-top: 40px;
+    padding: 18px 0 32px;
+    border-top: 1px solid var(--line);
+}
+
+.site-attribution p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.82rem;
+    text-align: center;
+}
+
+.site-attribution a {
+    color: var(--accent-2);
+    text-decoration-color: rgba(121, 168, 255, 0.4);
+}
+
 .fade-up {
     opacity: 0;
     transform: translateY(18px);

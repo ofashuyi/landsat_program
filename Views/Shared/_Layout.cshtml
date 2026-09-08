@@ -26,8 +26,7 @@
     <meta property="og:image" content="@ogImage">
     <meta property="og:url" content="@ogUrl">
     <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" id="favicon-dynamic" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="preload" href="/fonts/space-grotesk-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
@@ -47,6 +46,14 @@
 <body class="@bodyClass">
     <partial name="_TopNavigation" model="navigation" />
     @RenderBody()
+    <footer class="site-attribution">
+        <div class="shell container-xxl px-3 px-lg-4">
+            <p>
+                Built by <a href="https://github.com/ofashuyi" target="_blank" rel="noopener noreferrer">Olufemi Fashuyi</a>.
+                Independent educational project &mdash; not affiliated with or endorsed by NASA or USGS.
+            </p>
+        </div>
+    </footer>
     <script defer src="/vendor/bootstrap.bundle.min.js" asp-append-version="true"></script>
     @if (needsMapVendor)
     {
