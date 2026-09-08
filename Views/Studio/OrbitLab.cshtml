@@ -1,3 +1,4 @@
+@model LearningCatalog
 @{
     ViewData["Title"] = "Landsat Orbit Lab | Studio";
     ViewData["Description"] = "A focused Landsat orbit and coverage lab.";
@@ -16,6 +17,9 @@
         new NavigationLink("Map Studio", "/studio/remote-sensing-studio"),
         new NavigationLink("Briefing", "/briefing")
     };
+
+    var activeOrbitMode = Model.OrbitModes.FirstOrDefault(mode => mode.Id == "pair")
+        ?? Model.OrbitModes.FirstOrDefault();
 }
 
 <main class="shell container-xxl px-3 px-lg-4">
@@ -60,17 +64,41 @@
                         <div class="satellite-dot sentinel-dot" id="satellite-d"><span>S2B</span></div>
                         <div class="satellite-dot sentinel-dot" id="satellite-e"><span>S2C</span></div>
                     </div>
-                    <p class="orbit-caption" id="orbit-caption"></p>
+                    <p class="orbit-caption" id="orbit-caption">@(activeOrbitMode?.Caption)</p>
                 </div>
             </div>
             <div class="col-xl-5">
                 <div class="panel h-100">
                     <div class="eyebrow">Constellation Modes</div>
-                    <div class="mode-toggle" id="orbit-modes"></div>
-                    <div class="orbit-facts-grid" id="orbit-facts" aria-live="polite"></div>
+                    <div class="mode-toggle" id="orbit-modes">
+                        @foreach (var mode in Model.OrbitModes)
+                        {
+                            var isActive = mode.Id == activeOrbitMode?.Id;
+                            <button class="mode-button @(isActive ? "active" : "")" type="button" data-mode="@mode.Id" aria-pressed="@isActive.ToString().ToLowerInvariant()">@mode.Label</button>
+                        }
+                    </div>
+                    <div class="orbit-facts-grid" id="orbit-facts" aria-live="polite">
+                        @if (activeOrbitMode is not null)
+                        {
+                            @foreach (var fact in activeOrbitMode.Facts)
+                            {
+                                <div class="orbit-fact">
+                                    <span>@fact.Label</span>
+                                    <strong>@fact.Value</strong>
+                                </div>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(activeOrbitMode.Lesson))
+                            {
+                                <div class="orbit-fact">
+                                    <span>Tutor note</span>
+                                    <strong>@activeOrbitMode.Lesson</strong>
+                                </div>
+                            }
+                        }
+                    </div>
                     <div class="orbit-story" aria-live="polite">
-                        <h3 id="orbit-title">Orbit mode</h3>
-                        <p class="body-copy" id="orbit-description"></p>
+                        <h3 id="orbit-title">@(activeOrbitMode?.Title ?? "Orbit mode")</h3>
+                        <p class="body-copy" id="orbit-description">@(activeOrbitMode?.Description)</p>
                     </div>
                 </div>
             </div>

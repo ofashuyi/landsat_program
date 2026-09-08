@@ -1,3 +1,4 @@
+@model LearningCatalog
 @{
     ViewData["Title"] = "Landsat Resolution Lab | Studio";
     ViewData["Description"] = "A focused Landsat resolution lab.";
@@ -16,6 +17,9 @@
         new NavigationLink("Map Studio", "/studio/remote-sensing-studio"),
         new NavigationLink("Briefing", "/briefing")
     };
+
+    var activeResolutionMode = Model.ResolutionModes.FirstOrDefault(mode => mode.Id == "spatial")
+        ?? Model.ResolutionModes.FirstOrDefault();
 }
 
 <main class="shell container-xxl px-3 px-lg-4">
@@ -42,17 +46,69 @@
         <div class="row g-4">
             <div class="col-xl-4">
                 <div class="panel h-100">
-                    <div class="resolution-tabs" id="resolution-tabs"></div>
+                    <div class="resolution-tabs" id="resolution-tabs">
+                        @foreach (var mode in Model.ResolutionModes)
+                        {
+                            var isActive = mode.Id == activeResolutionMode?.Id;
+                            <button class="resolution-tab @(isActive ? "active" : "")" type="button" data-resolution="@mode.Id" aria-pressed="@isActive.ToString().ToLowerInvariant()">@mode.Label</button>
+                        }
+                    </div>
                     <div aria-live="polite">
-                        <h3 id="resolution-title">Spatial resolution</h3>
-                        <p class="body-copy" id="resolution-description"></p>
-                        <div class="resolution-facts" id="resolution-facts"></div>
+                        <h3 id="resolution-title">@(activeResolutionMode?.Title ?? "Spatial resolution")</h3>
+                        <p class="body-copy" id="resolution-description">@(activeResolutionMode?.Description)</p>
+                        <div class="resolution-facts" id="resolution-facts">
+                            @if (activeResolutionMode is not null)
+                            {
+                                @foreach (var fact in activeResolutionMode.Facts)
+                                {
+                                    <div class="resolution-fact">
+                                        <span>@fact.Label</span>
+                                        <strong>@fact.Value</strong>
+                                    </div>
+                                }
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-xl-8">
                 <div class="panel resolution-stage h-100">
-                    <div class="resolution-visual" id="resolution-visual"></div>
+                    <div class="resolution-visual" id="resolution-visual">
+                        @if (activeResolutionMode?.VisualType == "spatial")
+                        {
+                            var pixelCount = activeResolutionMode.PixelCount ?? 0;
+                            var coarseEvery = activeResolutionMode.CoarseEvery ?? 0;
+
+                            <div class="spatial-visual">
+                                <div class="pixel-demo">
+                                    @for (var index = 0; index < pixelCount; index++)
+                                    {
+                                        var isCoarse = coarseEvery > 0 && index % coarseEvery == 0;
+                                        <div class="pixel-cell @(isCoarse ? "coarse" : "")"></div>
+                                    }
+                                </div>
+                                <div class="resolution-scale">
+                                    @foreach (var card in activeResolutionMode.Cards ?? Array.Empty<LearningCard>())
+                                    {
+                                        <div class="scale-card">
+                                            <strong>@card.Title</strong>
+                                            <p>@card.Text</p>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <p class="body-copy">No visual is available for this resolution mode.</p>
+                        }
+                        @if (!string.IsNullOrWhiteSpace(activeResolutionMode?.TeacherNote))
+                        {
+                            <div class="impact-story-card">
+                                <strong>Tutor note:</strong> @activeResolutionMode.TeacherNote
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
         </div>

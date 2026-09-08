@@ -1,3 +1,4 @@
+@model DataGuideCatalog
 @{
     ViewData["Title"] = "Landsat Products | Briefing";
     ViewData["Description"] = "Choose the Landsat product or workflow that best fits the job.";
@@ -16,6 +17,29 @@
         new NavigationLink("Resources", "/briefing/resources"),
         new NavigationLink("Studio", "/studio")
     };
+
+    var workflowState = new Dictionary<string, string>
+    {
+        ["task"] = "time-series",
+        ["scale"] = "single-scene",
+        ["priority"] = "simplicity"
+    };
+    var recommendationKey = $"{workflowState["task"]}|{workflowState["scale"]}|{workflowState["priority"]}";
+    var recommendation = Model.Recommendations.GetValueOrDefault(recommendationKey);
+
+    string WorkflowHeading(string groupId) => groupId switch
+    {
+        "task" => "1. What are you trying to do?",
+        "scale" => "2. How big is the workflow?",
+        _ => "3. What matters more?"
+    };
+
+    WorkflowOption? SelectedOption(string groupId)
+    {
+        return Model.Guides.TryGetValue(groupId, out var options)
+            ? options.FirstOrDefault(option => option.Id == workflowState[groupId])
+            : null;
+    }
 }
 
 <main class="shell container-xxl px-3 px-lg-4">
@@ -35,12 +59,87 @@
         <div class="row g-4" id="workflow-guide">
             <div class="col-xl-5">
                 <div class="panel h-100">
-                    <div class="workflow-questions" id="workflow-questions"></div>
+                    <div class="workflow-questions" id="workflow-questions">
+                        <div class="workflow-choices">
+                            @foreach (var group in Model.Guides)
+                            {
+                                <div class="workflow-choice-group">
+                                    <h3>@WorkflowHeading(group.Key)</h3>
+                                    <div class="workflow-options-grid">
+                                        @foreach (var option in group.Value)
+                                        {
+                                            var isActive = workflowState.TryGetValue(group.Key, out var selectedId) && selectedId == option.Id;
+                                            <button class="workflow-option @(isActive ? "active" : "")" type="button" data-group="@group.Key" data-id="@option.Id" aria-pressed="@isActive.ToString().ToLowerInvariant()">
+                                                <strong>@option.Title</strong>
+                                                <p>@option.Text</p>
+                                            </button>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-xl-7">
                 <div class="panel h-100">
-                    <div class="workflow-result" id="workflow-result" aria-live="polite"></div>
+                    <div class="workflow-result" id="workflow-result" aria-live="polite">
+                        @if (recommendation is null)
+                        {
+                            <p class="body-copy">No recommendation is available for this combination yet.</p>
+                        }
+                        else
+                        {
+                            var task = SelectedOption("task");
+                            var scale = SelectedOption("scale");
+                            var priority = SelectedOption("priority");
+
+                            <div class="workflow-recommendation">
+                                <div>
+                                    <div class="eyebrow">Recommended Starting Point</div>
+                                    <h3>@recommendation.Product</h3>
+                                    <p>@recommendation.Why</p>
+                                </div>
+                                <div class="workflow-pills">
+                                    <div class="workflow-pill">
+                                        <span>Confidence</span>
+                                        <strong>@recommendation.Confidence</strong>
+                                    </div>
+                                    <div class="workflow-pill">
+                                        <span>Best for</span>
+                                        <strong>@recommendation.BestFor</strong>
+                                    </div>
+                                    <div class="workflow-pill">
+                                        <span>Tradeoff</span>
+                                        <strong>@recommendation.Tradeoff</strong>
+                                    </div>
+                                </div>
+                                <div class="workflow-metrics">
+                                    <div class="workflow-metric">
+                                        <span>Task</span>
+                                        <strong>@(task?.Title ?? workflowState["task"])</strong>
+                                    </div>
+                                    <div class="workflow-metric">
+                                        <span>Scale</span>
+                                        <strong>@(scale?.Title ?? workflowState["scale"])</strong>
+                                    </div>
+                                    <div class="workflow-metric">
+                                        <span>Priority</span>
+                                        <strong>@(priority?.Title ?? workflowState["priority"])</strong>
+                                    </div>
+                                </div>
+                                <div class="impact-story-card">
+                                    <strong>Next step:</strong> @recommendation.NextStep
+                                </div>
+                                @if (!string.IsNullOrWhiteSpace(recommendation.TeachingTip))
+                                {
+                                    <div class="impact-story-card">
+                                        <strong>Teaching tip:</strong> @recommendation.TeachingTip
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
         </div>

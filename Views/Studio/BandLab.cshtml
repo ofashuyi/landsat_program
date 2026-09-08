@@ -1,3 +1,4 @@
+@model BandCatalog
 @{
     ViewData["Title"] = "Landsat Band Lab | Studio";
     ViewData["Description"] = "A focused Landsat band-combination lab.";
@@ -16,6 +17,9 @@
         new NavigationLink("Map Studio", "/studio/remote-sensing-studio"),
         new NavigationLink("Briefing", "/briefing")
     };
+
+    var activePreset = Model.Presets.FirstOrDefault(preset => preset.Id == "false-vegetation")
+        ?? Model.Presets.FirstOrDefault();
 }
 
 <main class="shell container-xxl px-3 px-lg-4">
@@ -42,12 +46,71 @@
         <div class="row g-4">
             <div class="col-xl-4">
                 <div class="panel h-100">
-                    <div class="band-preset-list" id="band-preset-list"></div>
+                    <div class="band-preset-list" id="band-preset-list">
+                        @if (Model.Presets.Count == 0)
+                        {
+                            <p class="body-copy">Band presets are not available yet.</p>
+                        }
+                        else
+                        {
+                            @foreach (var preset in Model.Presets)
+                            {
+                                var isActive = preset.Id == activePreset?.Id;
+                                <button type="button" class="band-preset@(isActive ? " active" : "")" aria-pressed="@isActive.ToString().ToLowerInvariant()">
+                                    <strong>@preset.Name</strong>
+                                    <p>@preset.Combo</p>
+                                </button>
+                            }
+                        }
+                    </div>
                 </div>
             </div>
             <div class="col-xl-8">
                 <div class="panel h-100">
-                    <div class="band-viewer" id="band-viewer" aria-live="polite"></div>
+                    <div class="band-viewer" id="band-viewer" aria-live="polite">
+                        @if (activePreset is null)
+                        {
+                            <p class="body-copy">No band preset is available for this selection.</p>
+                        }
+                        else
+                        {
+                            <div class="band-stage">
+                                <div class="band-scene" style="--land-a: @activePreset.Colors.LandA; --land-b: @activePreset.Colors.LandB; --land-c: @activePreset.Colors.LandC; --land-d: @activePreset.Colors.LandD; --water: @activePreset.Colors.Water; --city: @activePreset.Colors.City; --scar: @activePreset.Colors.Scar;">
+                                    <div class="band-overlay-grid"></div>
+                                </div>
+                                <div class="band-detail">
+                                    <h3>@activePreset.Name</h3>
+                                    <p>@activePreset.Why</p>
+                                </div>
+                                <div class="band-legend">
+                                    <div class="band-legend-item">
+                                        <span>Band recipe</span>
+                                        <strong>@activePreset.Combo</strong>
+                                    </div>
+                                    <div class="band-legend-item">
+                                        <span>Best for</span>
+                                        <strong>@activePreset.GoodFor</strong>
+                                    </div>
+                                    <div class="band-legend-item">
+                                        <span>Watch out for</span>
+                                        <strong>@activePreset.Caution</strong>
+                                    </div>
+                                </div>
+                                @if (!string.IsNullOrWhiteSpace(activePreset.Lesson))
+                                {
+                                    <div class="impact-story-card">
+                                        <strong>Lesson:</strong> @activePreset.Lesson
+                                    </div>
+                                }
+                                @if (!string.IsNullOrWhiteSpace(activePreset.Practice))
+                                {
+                                    <div class="impact-story-card">
+                                        <strong>Practice:</strong> @activePreset.Practice
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
         </div>

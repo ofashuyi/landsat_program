@@ -1,3 +1,4 @@
+@model MissionCatalog
 @{
     ViewData["Title"] = "Landsat Mission Fleet | Briefing";
     ViewData["Description"] = "Filter, inspect, and compare Landsat missions.";
@@ -16,6 +17,16 @@
         new NavigationLink("Applications", "/briefing/applications"),
         new NavigationLink("Products", "/briefing/products"),
         new NavigationLink("Studio", "/studio")
+    };
+
+    var activeMission = Model.Missions.FirstOrDefault(mission => mission.Id == "landsat9")
+        ?? Model.Missions.LastOrDefault();
+
+    string StatusClass(string status) => status switch
+    {
+        "active" => "status-pill status-active",
+        "archive" => "status-pill status-archive",
+        _ => "status-pill status-ended"
     };
 }
 
@@ -47,21 +58,67 @@
                             </select>
                         </div>
                     </div>
-                    <div class="chip-row" id="filter-row" aria-label="Mission filters"></div>
-                    <div class="mission-grid" id="mission-grid" aria-live="polite"></div>
+                    <div class="chip-row" id="filter-row" aria-label="Mission filters">
+                        @foreach (var filter in Model.Filters)
+                        {
+                            <button type="button" class="chip-button" aria-pressed="@(filter.Id == "all" ? "true" : "false")">@filter.Label</button>
+                        }
+                    </div>
+                    <div class="mission-grid" id="mission-grid" aria-live="polite">
+                        @foreach (var mission in Model.Missions.OrderBy(mission => mission.Year))
+                        {
+                            var isActive = mission.Id == activeMission?.Id;
+                            <article class="mission-card@(isActive ? " active" : "")" tabindex="0" role="button" aria-pressed="@isActive.ToString().ToLowerInvariant()">
+                                <div class="card-top">
+                                    <h3>@mission.Name</h3>
+                                    <span class="@StatusClass(mission.Status)">@mission.StatusLabel</span>
+                                </div>
+                                <p>@mission.Short</p>
+                                <div class="chips">
+                                    <span class="chip">@mission.LaunchDate</span>
+                                    <span class="chip">@mission.Sensors</span>
+                                    <span class="chip">@mission.Revisit</span>
+                                </div>
+                                <div class="card-actions">
+                                    <span class="chip">Single view</span>
+                                    <button class="compare-toggle" type="button" aria-pressed="false">Add compare</button>
+                                </div>
+                            </article>
+                        }
+                    </div>
                 </div>
             </div>
             <div class="col-xl-5">
                 <aside class="panel mission-hero h-100" id="mission-detail" aria-live="polite">
-                    <img class="mission-image" id="detail-image" src="/img/landsat9.jpg" alt="Landsat mission image">
+                    <img class="mission-image" id="detail-image" src="@(activeMission?.Image ?? "/img/landsat9.jpg")" alt="@(activeMission?.Name ?? "Landsat") mission image">
                     <div>
-                        <div class="eyebrow" id="detail-eyebrow">Selected Mission</div>
-                        <h2 id="detail-title">Landsat 9</h2>
-                        <p class="body-copy" id="detail-summary"></p>
+                        <div class="eyebrow" id="detail-eyebrow">@(activeMission?.StatusLabel ?? "Selected Mission")</div>
+                        <h2 id="detail-title">@(activeMission?.Name ?? "Landsat 9")</h2>
+                        <p class="body-copy" id="detail-summary">@(activeMission?.Summary)</p>
                     </div>
-                    <div class="detail-grid" id="detail-grid"></div>
+                    <div class="detail-grid" id="detail-grid">
+                        @if (activeMission is not null)
+                        {
+                            <div class="detail-item">
+                                <span>Launch date</span>
+                                <strong>@activeMission.LaunchDate</strong>
+                            </div>
+                            <div class="detail-item">
+                                <span>Sensors</span>
+                                <strong>@activeMission.Sensors</strong>
+                            </div>
+                            <div class="detail-item">
+                                <span>Revisit cadence</span>
+                                <strong>@activeMission.Revisit</strong>
+                            </div>
+                            <div class="detail-item">
+                                <span>Resolution</span>
+                                <strong>@activeMission.Resolution</strong>
+                            </div>
+                        }
+                    </div>
                     <div class="mission-detail-copy">
-                        <p id="detail-highlight"></p>
+                        <p id="detail-highlight">@(activeMission?.Highlight)</p>
                     </div>
                 </aside>
             </div>
@@ -75,8 +132,14 @@
                 </div>
                 <button class="chip-button compare-clear" id="compare-clear" type="button">Clear compare</button>
             </div>
-            <div class="compare-selection" id="compare-selection" aria-live="polite"></div>
-            <div class="compare-grid" id="compare-grid" aria-live="polite"></div>
+            <div class="compare-selection" id="compare-selection" aria-live="polite">
+                <div class="compare-slot compare-slot-empty">Slot 1: add a mission to compare</div>
+                <div class="compare-slot compare-slot-empty">Slot 2: add a mission to compare</div>
+                <div class="compare-slot compare-slot-empty">Slot 3: add a mission to compare</div>
+            </div>
+            <div class="compare-grid" id="compare-grid" aria-live="polite">
+                <div class="compare-empty">Add two or three missions from the explorer above to build a side-by-side comparison.</div>
+            </div>
         </div>
         <div class="lesson-band mt-4">
             <article class="lesson-card">

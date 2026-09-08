@@ -1,3 +1,4 @@
+using LandsatProgram.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LandsatProgram.Controllers;
@@ -5,6 +6,17 @@ namespace LandsatProgram.Controllers;
 [Route("studio")]
 public sealed class StudioController : Controller
 {
+    private readonly ILearningCatalogService _learningCatalogService;
+    private readonly IBandCatalogService _bandCatalogService;
+
+    public StudioController(
+        ILearningCatalogService learningCatalogService,
+        IBandCatalogService bandCatalogService)
+    {
+        _learningCatalogService = learningCatalogService;
+        _bandCatalogService = bandCatalogService;
+    }
+
     [HttpGet("")]
     public IActionResult Interactive()
     {
@@ -12,21 +24,24 @@ public sealed class StudioController : Controller
     }
 
     [HttpGet("orbit-lab")]
-    public IActionResult OrbitLab()
+    public async Task<IActionResult> OrbitLab(CancellationToken cancellationToken)
     {
-        return View("OrbitLab");
+        var catalog = await _learningCatalogService.GetCatalogAsync(cancellationToken);
+        return View("OrbitLab", catalog);
     }
 
     [HttpGet("resolution-lab")]
-    public IActionResult ResolutionLab()
+    public async Task<IActionResult> ResolutionLab(CancellationToken cancellationToken)
     {
-        return View("ResolutionLab");
+        var catalog = await _learningCatalogService.GetCatalogAsync(cancellationToken);
+        return View("ResolutionLab", catalog);
     }
 
     [HttpGet("band-lab")]
-    public IActionResult BandLab()
+    public async Task<IActionResult> BandLab(CancellationToken cancellationToken)
     {
-        return View("BandLab");
+        var catalog = await _bandCatalogService.GetCatalogAsync(cancellationToken);
+        return View("BandLab", catalog);
     }
 
     [HttpGet("remote-sensing-studio")]

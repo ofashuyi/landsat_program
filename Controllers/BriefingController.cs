@@ -1,3 +1,4 @@
+using LandsatProgram.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LandsatProgram.Controllers;
@@ -5,6 +6,20 @@ namespace LandsatProgram.Controllers;
 [Route("briefing")]
 public sealed class BriefingController : Controller
 {
+    private readonly IMissionCatalogService _missionCatalogService;
+    private readonly IDataGuideService _dataGuideService;
+    private readonly IApplicationCatalogService _applicationCatalogService;
+
+    public BriefingController(
+        IMissionCatalogService missionCatalogService,
+        IDataGuideService dataGuideService,
+        IApplicationCatalogService applicationCatalogService)
+    {
+        _missionCatalogService = missionCatalogService;
+        _dataGuideService = dataGuideService;
+        _applicationCatalogService = applicationCatalogService;
+    }
+
     [HttpGet("")]
     public IActionResult Program()
     {
@@ -24,21 +39,24 @@ public sealed class BriefingController : Controller
     }
 
     [HttpGet("missions")]
-    public IActionResult Missions()
+    public async Task<IActionResult> Missions(CancellationToken cancellationToken)
     {
-        return View("Missions");
+        var catalog = await _missionCatalogService.GetCatalogAsync(cancellationToken);
+        return View("Missions", catalog);
     }
 
     [HttpGet("applications")]
-    public IActionResult Applications()
+    public async Task<IActionResult> Applications(CancellationToken cancellationToken)
     {
-        return View("Applications");
+        var catalog = await _applicationCatalogService.GetCatalogAsync(cancellationToken);
+        return View("Applications", catalog);
     }
 
     [HttpGet("products")]
-    public IActionResult Products()
+    public async Task<IActionResult> Products(CancellationToken cancellationToken)
     {
-        return View("DataGuide");
+        var catalog = await _dataGuideService.GetCatalogAsync(cancellationToken);
+        return View("DataGuide", catalog);
     }
 
     [HttpGet("data-guide")]
